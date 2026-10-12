@@ -1,0 +1,2152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AurorianCraft Wiki</title>
+  <meta name="description" content="Official wiki for the AurorianCraft: Realistic Survival Addon for Minecraft Bedrock. Guides, progression, mechanics, bestiary and changelogs.">
+  <meta name="theme-color" content="#161a14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #141813;
+  --bg-2: #191e17;
+  --panel: #1e241b;
+  --panel-2: #252c21;
+  --line: #333d2e;
+  --moss: #58703d;
+  --moss-deep: #2f3b22;
+  --lichen: #a8c686;
+  --lichen-dim: #86a368;
+  --stone: #9ba394;
+  --text: #e6eadf;
+  --muted: #a0a998;
+  --amber: #e8be63;
+  --radius: 10px;
+  --head: 'Bricolage Grotesque', 'Segoe UI', 'Trebuchet MS', system-ui, sans-serif;
+  --body: 'Source Sans 3', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --top: 64px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 400 17px/1.65 var(--body); -webkit-text-size-adjust: 100%;
+}
+a { color: var(--lichen); text-underline-offset: 3px; }
+a:hover { color: #c7e0a8; }
+code { background: var(--panel-2); border: 1px solid var(--line); border-radius: 5px; padding: 0 .35em; font-size: .92em; }
+:focus-visible { outline: 2px solid var(--lichen); outline-offset: 2px; border-radius: 4px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--lichen); color: #10140d; padding: 8px 14px; border-radius: 6px; z-index: 100; }
+.skip:focus { left: 8px; }
+.ic { width: 20px; height: 20px; flex: none; }
+.top {
+  position: sticky; top: 0; z-index: 40; height: var(--top);
+  display: flex; align-items: center; gap: 18px; padding: 0 22px;
+  background: rgba(20, 24, 19, .94); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font: 500 1.15rem var(--head); white-space: nowrap; }
+.logo b { color: var(--lichen); font-weight: 700; }
+.mainnav { display: flex; gap: 4px; margin-left: 8px; }
+.mainnav a { color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: 8px; font-size: .95rem; transition: background .2s, color .2s; }
+.mainnav a:hover { background: var(--panel); color: var(--text); }
+.iconbtn { display: none; background: none; border: 1px solid var(--line); color: var(--text); border-radius: 8px; width: 40px; height: 40px; cursor: pointer; align-items: center; justify-content: center; }
+.search { position: relative; margin-left: auto; width: min(360px, 34vw); }
+.search input {
+  width: 100%; height: 40px; padding: 0 12px 0 38px; color: var(--text);
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 999px; font: inherit; font-size: .95rem;
+}
+.search input::placeholder { color: var(--muted); }
+.search input:focus { border-color: var(--lichen-dim); outline: none; box-shadow: 0 0 0 3px rgba(168, 198, 134, .18); }
+.search-ic { position: absolute; left: 12px; top: 10px; color: var(--muted); pointer-events: none; }
+.suggest {
+  position: absolute; top: 46px; left: 0; right: 0; background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: hidden; box-shadow: 0 14px 34px rgba(0, 0, 0, .5);
+}
+.suggest[hidden] { display: none; }
+.suggest a { display: flex; justify-content: space-between; gap: 12px; padding: 10px 14px; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--line); }
+.suggest a:hover, .suggest a.sel { background: var(--panel-2); }
+.sg-c { color: var(--muted); font-size: .82rem; white-space: nowrap; }
+.suggest .sg-all { justify-content: center; color: var(--lichen); border-bottom: 0; font-size: .92rem; }
+.sg-none { margin: 0; padding: 14px; color: var(--muted); }
+.shell { display: grid; grid-template-columns: 270px minmax(0, 1fr); max-width: 1380px; margin: 0 auto; min-height: calc(100vh - var(--top) - 110px); }
+.side { position: sticky; top: var(--top); align-self: start; height: calc(100vh - var(--top)); overflow: auto; padding: 22px 14px 30px 22px; border-right: 1px solid var(--line); }
+.side ul { list-style: none; margin: 8px 0 0; padding: 0; }
+.side a { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; color: var(--muted); text-decoration: none; font-size: .96rem; line-height: 1.3; transition: background .2s, color .2s; }
+.side a span { flex: 1; }
+.side a em { font-style: normal; font-size: .78rem; color: var(--stone); background: var(--panel); border-radius: 999px; padding: 1px 8px; }
+.side a:hover { background: var(--panel); color: var(--text); }
+.side a.on { background: var(--moss-deep); color: var(--text); box-shadow: inset 3px 0 0 var(--lichen); }
+.side-home { margin-bottom: 4px; }
+.main { padding: 28px clamp(18px, 4vw, 48px) 70px; min-width: 0; outline: none; }
+.scrim { display: none; }
+.crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 0; margin: 0 0 14px; padding: 0; font-size: .9rem; color: var(--muted); }
+.crumbs li + li::before { content: "/"; margin: 0 8px; color: var(--line); }
+.crumbs a { color: var(--muted); }
+.crumbs a:hover { color: var(--lichen); }
+.crumbs [aria-current] { color: var(--text); }
+.hero {
+  display: grid; grid-template-columns: 1.15fr .85fr; gap: 34px; align-items: center;
+  padding: clamp(26px, 5vw, 56px); border: 1px solid var(--line); border-radius: 16px; margin-bottom: 44px;
+  background:
+    linear-gradient(180deg, rgba(20, 24, 19, .35), rgba(20, 24, 19, .9)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='260' viewBox='0 0 420 260'%3E%3Cg fill='none' stroke='%23a8c686' stroke-opacity='.12' stroke-width='1.2'%3E%3Cpath d='M0 30c60-26 110 26 210 0s150-26 210 0'/%3E%3Cpath d='M0 70c70-34 100 34 210 0s140-34 210 0'/%3E%3Cpath d='M0 112c50-20 120 36 210 0s160-30 210 0'/%3E%3Cpath d='M0 156c80-40 90 40 210 0s130-40 210 0'/%3E%3Cpath d='M0 200c55-22 115 30 210 0s155-28 210 0'/%3E%3Cpath d='M0 240c65-30 105 32 210 0s145-32 210 0'/%3E%3C/g%3E%3C/svg%3E") var(--bg-2);
+}
+.hero h1 { font: 700 clamp(2.4rem, 6vw, 4.2rem)/1.02 var(--head); letter-spacing: -.02em; margin: 0 0 14px; }
+.hero-sub { font-size: clamp(1.1rem, 2.2vw, 1.35rem); color: #cdd6c2; max-width: 34ch; margin: 0 0 26px; line-height: 1.45; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
+.btn { display: inline-flex; align-items: center; min-height: 46px; padding: 0 22px; border-radius: 10px; border: 1px solid var(--lichen-dim); color: var(--lichen); text-decoration: none; font-weight: 600; transition: background .2s, transform .2s; }
+.btn:hover { background: rgba(168, 198, 134, .12); color: #c7e0a8; }
+.btn.primary { background: var(--lichen); color: #10140d; border-color: var(--lichen); }
+.btn.primary:hover { background: #bcd89c; color: #10140d; }
+.hero-ref { margin: 0; font-size: .92rem; color: var(--muted); }
+.hero-img { margin: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--panel); aspect-ratio: 16 / 10; }
+.hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-img.noimg { display: none; }
+.hero:has(.hero-img.noimg) { grid-template-columns: 1fr; }
+.block { margin-bottom: 46px; }
+.sec { font: 700 1.6rem/1.2 var(--head); margin: 0 0 14px; letter-spacing: -.01em; }
+.sec-sub { color: var(--muted); margin: -6px 0 18px; max-width: 62ch; }
+.more { font-weight: 600; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; }
+.card {
+  display: flex; gap: 14px; padding: 16px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+  color: var(--text); text-decoration: none; transition: border-color .2s, background .2s, transform .2s;
+}
+.card:hover { border-color: var(--lichen-dim); background: var(--panel-2); transform: translateY(-2px); color: var(--text); }
+.card-ic { width: 42px; height: 42px; border-radius: 9px; background: var(--moss-deep); color: var(--lichen); display: flex; align-items: center; justify-content: center; flex: none; }
+.card-ic .ic { width: 22px; height: 22px; }
+.card-tx { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.card-t { font: 600 1.05rem/1.25 var(--head); }
+.card-s { color: var(--muted); font-size: .94rem; line-height: 1.45; }
+.card-m { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.chip { font-size: .76rem; color: var(--stone); border: 1px solid var(--line); border-radius: 999px; padding: 1px 9px; }
+.badge { display: inline-block; font-size: .74rem; font-weight: 600; line-height: 1.5; padding: 0 9px; border-radius: 999px; vertical-align: middle; white-space: nowrap; }
+.badge.ok { color: var(--lichen); background: rgba(168, 198, 134, .13); border: 1px solid rgba(168, 198, 134, .35); }
+.badge.tbc { color: var(--amber); background: rgba(232, 190, 99, .12); border: 1px solid rgba(232, 190, 99, .38); }
+.stages { list-style: none; margin: 0; padding: 0; position: relative; counter-reset: s; }
+.stages::before { content: ""; position: absolute; left: 19px; top: 18px; bottom: 18px; border-left: 2px dashed var(--moss); }
+.stage { position: relative; display: flex; gap: 16px; padding: 0 0 18px; }
+.stage-n { position: relative; z-index: 1; flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--moss-deep); border: 2px solid var(--lichen-dim); color: var(--lichen); display: flex; align-items: center; justify-content: center; font: 700 1rem var(--head); }
+.stage-b { flex: 1; min-width: 0; padding-top: 2px; }
+.stage-t { font: 700 1.15rem/1.3 var(--head); margin: 0 0 4px; }
+.stage-b > p { margin: 0 0 10px; color: #cdd6c2; }
+.stages.compact .stage { padding-bottom: 12px; }
+.stage-link { display: flex; gap: 16px; text-decoration: none; color: var(--text); align-items: flex-start; width: 100%; padding: 2px 10px 2px 0; border-radius: 10px; }
+.stage-link:hover .stage-n { background: var(--moss); color: #fff; }
+.stage-link:hover .stage-t { color: var(--lichen); }
+.stage-link .stage-t { display: block; }
+.stage-s { display: block; color: var(--muted); font-size: .95rem; line-height: 1.45; }
+.stage.flash .stage-b, .flash { animation: flash 1.6s ease-out; }
+@keyframes flash { from { background: rgba(168, 198, 134, .22); } to { background: transparent; } }
+.updates { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-bottom: 14px; }
+.upd { border-left: 3px solid var(--moss); background: var(--panel); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 16px; }
+.upd h3 { margin: 0; font: 700 1.1rem var(--head); }
+.upd h3 a { text-decoration: none; }
+.upd-d { margin: 0 0 8px; color: var(--muted); font-size: .88rem; }
+.upd ul { margin: 0 0 8px; padding-left: 18px; font-size: .95rem; }
+.upd-s { margin: 0; font-size: .9rem; }
+.entry-grid { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 40px; align-items: start; }
+.entry { min-width: 0; max-width: 78ch; }
+.entry-h h1 { font: 700 clamp(1.9rem, 4vw, 2.7rem)/1.1 var(--head); letter-spacing: -.02em; margin: 0 0 10px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.h1-ic { width: 34px; height: 34px; color: var(--lichen); }
+.lead { font-size: 1.12rem; color: #cdd6c2; margin: 0 0 18px; line-height: 1.5; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 22px; padding: 10px 14px; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); font-size: .92rem; color: var(--muted); margin-bottom: 22px; }
+.meta b { color: var(--text); font-weight: 600; }
+.entry h2 { font: 700 1.45rem/1.25 var(--head); margin: 34px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); scroll-margin-top: calc(var(--top) + 16px); }
+.entry p { margin: 0 0 14px; }
+.list { padding-left: 20px; margin: 0 0 16px; }
+.list li { margin-bottom: 7px; }
+.list li::marker { color: var(--lichen-dim); }
+.shot { margin: 0 0 22px; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--panel); }
+.shot img { width: 100%; display: block; max-height: 420px; object-fit: cover; }
+.shot figcaption { padding: 8px 12px; font-size: .85rem; color: var(--muted); }
+.shot-a { display: block; color: inherit; text-decoration: none; }
+.shot .ph { display: none; }
+.shot.noimg .ph { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 200px; padding: 20px; text-align: center; color: var(--muted); border: 2px dashed var(--line); margin: 10px; border-radius: var(--radius); background: var(--bg-2); font-weight: 600; }
+.shot .ph small { font-weight: 400; font-size: .8rem; overflow-wrap: anywhere; }
+.kv { margin: 0 0 18px; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--panel); }
+.kv > div { display: grid; grid-template-columns: minmax(130px, 200px) 1fr; gap: 14px; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.kv > div:last-child { border-bottom: 0; }
+.kv dt { color: var(--muted); font-weight: 600; font-size: .94rem; }
+.kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.stage-b .kv { margin-top: 8px; }
+.note { margin: 0 0 18px; padding: 12px 16px; border-radius: var(--radius); border: 1px solid var(--line); border-left-width: 4px; background: var(--panel); font-size: .98rem; }
+.note.info { border-left-color: var(--lichen-dim); }
+.note.warn { border-left-color: #d98a4a; background: rgba(217, 138, 74, .08); }
+.note.tbc { border-left-color: var(--amber); background: rgba(232, 190, 99, .07); }
+.deadlink { color: var(--muted); border-bottom: 1px dotted var(--muted); }
+.entry-f { margin-top: 40px; }
+.srcs { margin: 0 0 8px; padding-left: 20px; }
+.fine { color: var(--muted); font-size: .88rem; }
+.related { margin-top: 36px; }
+.toc-col { position: sticky; top: calc(var(--top) + 24px); }
+.toc { border-left: 2px solid var(--line); padding-left: 14px; }
+.toc-h { margin: 0 0 8px; font: 700 .95rem var(--head); color: var(--muted); }
+.toc ol { list-style: none; margin: 0; padding: 0; }
+.toc a { display: block; padding: 4px 0; color: var(--muted); text-decoration: none; font-size: .92rem; line-height: 1.35; }
+.toc a:hover { color: var(--lichen); }
+.count { color: var(--muted); }
+.foot { border-top: 1px solid var(--line); padding: 22px clamp(18px, 4vw, 48px); color: var(--muted); font-size: .88rem; background: var(--bg-2); }
+.foot p { margin: 0 0 6px; max-width: 110ch; }
+@media (max-width: 1100px) {
+  .entry-grid { grid-template-columns: 1fr; gap: 0; }
+  .toc-col { position: static; order: -1; margin-bottom: 18px; }
+  .toc { border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-2); padding: 10px 14px; }
+  .toc ol { columns: 2; column-gap: 24px; }
+  .mainnav a:nth-child(n+5) { display: none; }
+}
+@media (max-width: 900px) {
+  .iconbtn { display: inline-flex; }
+  .mainnav { display: none; }
+  .search { width: auto; flex: 1; }
+  .shell { display: block; }
+  .side {
+    position: fixed; top: var(--top); left: 0; bottom: 0; width: min(84vw, 320px); height: auto; z-index: 45;
+    background: var(--bg); transform: translateX(-102%); transition: transform .25s; border-right: 1px solid var(--line);
+  }
+  body.nav-open .side { transform: none; }
+  body.nav-open .scrim { display: block; position: fixed; inset: var(--top) 0 0 0; background: rgba(0, 0, 0, .55); z-index: 44; }
+  .hero { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .top { padding: 0 12px; gap: 10px; }
+  .logo span { display: none; }
+  .main { padding-top: 20px; }
+  .kv > div { grid-template-columns: 1fr; gap: 2px; }
+  .toc ol { columns: 1; }
+  .stages::before { left: 17px; }
+  .stage-n { width: 36px; height: 36px; }
+  .btn { flex: 1; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="top">
+    <button id="menubtn" class="iconbtn menubtn" aria-label="Open category menu" aria-expanded="false" aria-controls="side"><span id="ic-menu"></span></button>
+    <a class="logo" href="#/" aria-label="AurorianCraft Wiki — home">
+      <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+        <path d="M2 24c5-2 7-8 14-8s9-6 14-9" fill="none" stroke="#a8c686" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2 29c5-2 7-8 14-8s9-6 14-9" fill="none" stroke="#5f7a45" stroke-width="2" stroke-linecap="round"/>
+        <path d="M16 3l3 6h-6z" fill="#a8c686"/>
+      </svg>
+      <span>AurorianCraft <b>Wiki</b></span>
+    </a>
+    <nav class="mainnav" aria-label="Main categories">
+      <a href="#/p/beginners-guide">Beginners</a>
+      <a href="#/c/progression">Progression</a>
+      <a href="#/c/items">Items</a>
+      <a href="#/c/recipes">Recipes</a>
+      <a href="#/c/mechanics">Mechanics</a>
+      <a href="#/c/bestiary">Bestiary</a>
+      <a href="#/c/updates">Updates</a>
+    </nav>
+    <form id="searchform" class="search" role="search" autocomplete="off">
+      <label for="q" class="sr">Search the wiki</label>
+      <span id="ic-search" class="search-ic"></span>
+      <input id="q" type="search" placeholder="Search item, recipe, mechanic…" role="combobox" aria-expanded="false" aria-controls="suggest" aria-autocomplete="list">
+      <div id="suggest" class="suggest" role="listbox" hidden></div>
+    </form>
+  </header>
+
+  <div class="shell">
+    <aside id="side" class="side" aria-label="Side menu"></aside>
+    <main id="main" class="main" tabindex="-1">
+      <noscript><p>This wiki needs JavaScript to work.</p></noscript>
+    </main>
+  </div>
+  <div id="scrim" class="scrim"></div>
+
+  <footer class="foot">
+    <p>Official AurorianCraft wiki, maintained by the addon author (VictaoSigma). Not affiliated with Mojang. AurorianCraft and its images are All Rights Reserved. © <span id="year"></span></p>
+    <p>Documents version <strong>2.5</strong> (Octuber, 2026) and follows the in-game Survival Guide.</p>
+  </footer>
+
+  <script>
+window.WIKI = (function () {
+  var VER = '2.5';
+  var tbc = function (t) { return { t: t, st: 'tbc' }; };
+  var SRC = {
+    cf:     { n: 'CurseForge — official page', u: 'https://www.curseforge.com/minecraft-bedrock/addons/auroriancraft-insane-survival' },
+    files:  { n: 'CurseForge — files', u: 'https://www.curseforge.com/minecraft-bedrock/addons/auroriancraft-insane-survival/files/all?page=1&pageSize=20&showAlphaFiles=hide' },
+    mcpedl: { n: 'MCPEDL — addon page', u: 'https://mcpedl.com/auroriancraft-insane-survival/' },
+    dev:    { n: 'MCPEDL — replies by the author (VictãoSigma)', u: 'https://mcpedl.com/auroriancraft-insane-survival/#comments' },
+    users:  { n: 'MCPEDL — player reports', u: 'https://mcpedl.com/auroriancraft-insane-survival/#comments' },
+    animals:{ n: 'CurseForge — Aurorian Animals (sub-addon)', u: 'https://www.curseforge.com/minecraft-bedrock/addons/aurorian-animals' },
+    guide:  { n: 'In-game Survival Guide (guide book)', u: '' }
+  };
+  var IMG = {
+    hero:  { src: 'https://media.forgecdn.net/attachments/1425/965/fire-5-png.PNG', alt: 'AurorianCraft cover image', cap: 'Cover image (official CurseForge gallery)' },
+    items: { src: 'https://media.forgecdn.net/attachments/1425/966/fire-png.PNG', alt: 'Some items added in the fire update', cap: 'Some items added in the fire update (official gallery)' },
+    knap:  { src: 'https://media.forgecdn.net/attachments/1425/964/fire-2-png.PNG', alt: 'Conceptual view of knapping', cap: 'Conceptual view of the knapping mechanic (official gallery)' },
+    forge: { src: 'https://media.forgecdn.net/attachments/1425/967/fire-3-png.PNG', alt: 'Forge items and some armors', cap: 'A view of each forge item and some armors (official gallery)' },
+    fauna: { src: 'https://media.forgecdn.net/attachments/1425/963/fire-4-png.PNG', alt: 'A look at the addon wildlife', cap: 'A small look into the addon’s wildlife (official gallery)' }
+  };
+  var CUR = 'Current in-game guide';
+  var categories = [
+    { id: 'beginners', name: 'Beginner’s guide', icon: 'compass', desc: 'Requirements, first steps and common mistakes to start well.' },
+    { id: 'progression', name: 'Progression', icon: 'trail', desc: 'The path from bare hands to steel and netherite, stage by stage.' },
+    { id: 'items', name: 'Items and materials', icon: 'gem', desc: 'Fibers, lumber, hide, ores, alloys and other materials.' },
+    { id: 'tools', name: 'Tools and crafting', icon: 'hammer', desc: 'Stone, flint and metal tools, armor, buckets and how they are made.' },
+    { id: 'recipes', name: 'Recipes', icon: 'scroll', desc: 'Crafting recipes, alloy proportions and the smithing process.' },
+    { id: 'mechanics', name: 'Survival mechanics', icon: 'flame', desc: 'Fibers, knapping, wood, fire, pottery, metallurgy, leather and world rules.' },
+    { id: 'bestiary', name: 'Animals and bestiary', icon: 'paw', desc: 'Species, behavior and in-game use of the addon’s birds.' },
+    { id: 'structures', name: 'Structures and workstations', icon: 'anvil', desc: 'Forge, vessel, pit kiln, bonfire, barrel, sieve, mortar and other stations.' },
+    { id: 'installation', name: 'Installation and compatibility', icon: 'box', desc: 'Minecraft version, experiments, installing and known issues.' },
+    { id: 'updates', name: 'Updates and changelogs', icon: 'clock', desc: 'Version history with the official source for each change.' },
+    { id: 'about', name: 'About this wiki', icon: 'info', desc: 'Sources, credits, verification method and notices.' }
+  ];
+  var stages = [
+    {
+      id: 'stage-1', name: 'Plant fiber and string', st: 'ok', src: ['guide'],
+      summary: 'No tools needed: sneak and interact with tall grass using an empty hand to collect plant fiber, which becomes string.',
+      materials: ['Plant fiber (from tallgrass-like blocks)', 'String'],
+      tools: ['None — bare hands only'],
+      learn: 'Sneak + interact with an empty hand on a tallgrass-like block. Every primitive tool needs string later.',
+      deps: ['None'],
+      rel: ['fiber-gathering', 'plant-fiber', 'recipe-string', 'straw']
+    },
+    {
+      id: 'stage-2', name: 'Knapping: stone and flint tools', st: 'ok', src: ['guide'],
+      summary: 'Knap a pebble (or, optionally, flint) on a hard block, choose a tool head, then add a stick and a string.',
+      materials: ['Pebbles', 'Flint (optional)', 'Sticks', 'String'],
+      tools: ['Any hard block as the knapping surface'],
+      learn: 'Sneak + interact with the pebble on a hard block and pick the head. Flint tools are made the same way and are optional.',
+      deps: ['Stage 1 (string)'],
+      rel: ['knapping', 'primitive-tools']
+    },
+    {
+      id: 'stage-3', name: 'Wood: stump, lumber and planks', st: 'ok', src: ['guide'],
+      summary: 'Wood takes several steps: break a log with an axe, make a stump, chop logs into lumber, then craft planks.',
+      materials: ['Logs', 'Lumber', 'Planks'],
+      tools: ['Axe', 'Stump'],
+      learn: 'Without an axe you cannot break wood. Interact with an axe on a stripped log to create a stump, then chop logs on it. Later, a metal saw also drops lumber from wood.',
+      deps: ['Stage 2 (an axe)'],
+      rel: ['wood-processing', 'lumber', 'stump', 'saw', 'recipe-stump', 'recipe-lumber']
+    },
+    {
+      id: 'stage-4', name: 'Fire', st: 'ok', src: ['guide'],
+      summary: 'Three fire sources, from the unreliable firebow to matchsticks and finally flint and steel.',
+      materials: ['Sticks', 'Pebble', 'String', 'Phosphorus (matchsticks)', 'Any ingot + flint (flint and steel)'],
+      tools: ['Firebow', 'Matchsticks', 'Flint and steel'],
+      learn: 'The firebow has only a 10% success rate and 10 durability; matchsticks never fail but are single-use.',
+      deps: ['Stage 2'],
+      rel: ['fire', 'recipe-firebow', 'recipe-matchsticks', 'recipe-flint-steel', 'bonfire', 'torches']
+    },
+    {
+      id: 'stage-5', name: 'Pit kiln and pottery', st: 'ok', src: ['guide'],
+      summary: 'Build a pit kiln from a full straw layer and two logs, then fire clay pieces, bricks and glass.',
+      materials: ['Straw', 'Logs', 'Clay', 'Sand'],
+      tools: ['Any fire source', 'Pit kiln'],
+      learn: 'A pit kiln needs a solid floor and at least 3 covered sides, takes 5 minutes per item and needs no fuel.',
+      deps: ['Stages 3 and 4'],
+      rel: ['pit-kiln', 'pottery', 'straw']
+    },
+    {
+      id: 'stage-6', name: 'Vessel and molten metal', st: 'ok', src: ['guide'],
+      summary: 'The vessel is a pottery piece that turns raw metals into molten metal when fired in a pit kiln.',
+      materials: ['Unfired vessel (clay)', 'Raw metals (4 per vessel)'],
+      tools: ['Vessel', 'Pit kiln'],
+      learn: 'Four slots, one metal makes a pure metal; mixed metals only work in exact alloy proportions, otherwise you get useless molten scraps.',
+      deps: ['Stage 5'],
+      rel: ['vessel', 'metallurgy', 'alloys']
+    },
+    {
+      id: 'stage-7', name: 'Copper and the forge', st: 'ok', src: ['guide'],
+      summary: 'Copper is the first metal for tools. Seven copper ingots make the forge, where metal items are wrought.',
+      materials: ['28 raw copper (7 vessels)', 'Fired mold', 'Molten ingot', 'Stick (handle)'],
+      tools: ['Forge', 'Any hammer (even stone)'],
+      learn: 'Place a mold, place a molten ingot, wrought it with a hammer, then add the handle.',
+      deps: ['Stage 6'],
+      rel: ['forge', 'recipe-forge', 'recipe-forge-items', 'metallurgy']
+    },
+    {
+      id: 'stage-8', name: 'Metals: iron, bronze, steel and netherite', st: 'ok', src: ['guide'],
+      summary: 'Iron or bronze sit in the middle of the progression, steel is the top of the regular path and netherite goes beyond.',
+      materials: ['Iron', 'Tin (bronze)', 'Nickel and silver (steel)', 'Silver rods (bronze and steel handles)', 'Netherite'],
+      tools: ['Vessel + pit kiln', 'Forge', 'Smithing table (netherite)'],
+      learn: 'Steel replaces the vanilla diamond tier for tools and armor, and netherite needs steel.',
+      deps: ['Stage 7'],
+      rel: ['metal-tools', 'steel', 'alloys', 'nickel', 'recipe-netherite']
+    }
+  ];
+  var entries = [
+    {
+      id: 'beginners-guide', cat: 'beginners', title: 'Beginner’s guide',
+      sum: 'Requirements, the in-game guide book, first steps and common mistakes for starting your AurorianCraft adventure.',
+      tags: ['start', 'getting started', 'first steps', 'newbie', 'beginner', 'tutorial', 'introduction'],
+      ver: VER, src: ['guide', 'cf', 'dev'], st: 'ok', img: IMG.hero,
+      rel: ['progression-guide', 'installation', 'survival-guide', 'world-rules', 'about'],
+      body: [
+        { h2: 'What to expect' },
+        { p: 'The addon reimagines crafting as a realistic survival situation. Progression has many steps, which makes it harder and more rewarding. The in-game guide describes its features as **realistic craftings**, **dynamic stations** and **immersive interactions**.' },
+        { h2: 'Before you start' },
+        { p: 'To play you must enable the **Upcoming Creator** experiment in the world and use Minecraft Bedrock 1.26.50 or higher. Details in [[installation|Installation and compatibility]].' },
+        { h2: 'Open the Survival Guide' },
+        { p: 'The guide book is given when the player spawns, and it opens when you use it. You can also open it with the `/aca:guide_progression` command, which any player can run. Its categories are **Introduction**, **Progression**, **Other** and **World Rules**. More in [[survival-guide|Survival Guide]].' },
+        { h2: 'Your first steps' },
+        { list: [
+          'Collect plant fiber: sneak and interact with an empty hand on tall grass. See [[fiber-gathering|Fiber gathering]].',
+          'Get pebbles and knap them on a hard block into a tool head, then add a stick and a string. See [[knapping|Knapping]] and [[primitive-tools|Primitive tools]].',
+          'Use your axe to break wood, make a stump from a stripped log and chop logs into lumber. See [[wood-processing|Wood processing]].',
+          'Make fire with a [[recipe-firebow|firebow]] and build a [[bonfire|bonfire]] (4 sticks) for light, warmth and cooking.',
+          'Build a [[pit-kiln|pit kiln]], model clay into pottery and fire it. See [[pottery|Pottery]].',
+          'Make a [[vessel|vessel]], melt copper and build the [[forge|forge]]. See [[metallurgy|Metallurgy]].'
+        ] },
+        { h2: 'Rules that surprise new players' },
+        { list: [
+          'Wooden blocks need an axe and stony blocks need a pickaxe. Breaking them without the right tool hurts you and drops nothing. See [[destroying-blocks|Destroying blocks]].',
+          'Torches go out over time and must be relit (this can be turned off in [[world-rules|World Rules]]). See [[torches|Torches]].',
+          'Vanilla leather is replaced by hide, which needs a long process to become leather. See [[leather-cycle|Leather cycle]].',
+          'Chests need a nugget; the early-game alternative is the [[basket|basket]].',
+          'Locked inventory: by default only the hotbar is unlocked. It can be changed in [[world-rules|World Rules]].'
+        ] },
+        { h2: 'Common mistakes' },
+        { list: [
+          { t: 'A “locked” inventory: it is the Locked Inventory rule. Disable it in Survival Guide → World Rules (ignore the lock warning unless you want to change the lock).', st: 'ok' },
+          { t: 'Not finding fiber or string: you must sneak and interact with an empty hand on tall grass.', st: 'ok' },
+          { t: 'Breaking wood or stone with bare hands: it hurts and drops nothing.', st: 'ok' },
+          { t: 'Using wrong alloy proportions in a vessel: the result is molten scraps, which are useless. See [[alloys|Alloys]].', st: 'ok' },
+          { t: 'Putting a tool or armor in a vessel to recycle it without knowing it fills all four slots and the item cannot be taken back out.', st: 'ok' },
+          { t: 'Dropping francium in water: it explodes like TNT. The author also recommends never entering water while using a francium item.', st: 'ok' }
+        ] },
+        { h2: 'Recommended next steps' },
+        { list: [
+          'Follow the [[progression-guide|Progression guide]] stage by stage.',
+          'Read [[ores-metals|Ores and metals]] before exploring caves.',
+          'Check the [[sieve|sieve]], which can skip steps in the metal progression.',
+          'Meet the birds in the [[wildlife-systems|Bestiary]].'
+        ] }
+      ]
+    },
+    {
+      id: 'progression-guide', cat: 'progression', title: 'Progression guide',
+      sum: 'The progression from fibers and stone tools to pottery, molten metal, steel and netherite.',
+      tags: ['progression', 'stages', 'tech tree', 'stone age', 'metals', 'evolution', 'tiers'],
+      ver: CUR, src: ['guide', 'cf', 'dev'], st: 'ok', img: IMG.forge,
+      rel: ['beginners-guide', 'survival-guide', 'ores-metals', 'metallurgy'],
+      body: [
+        { p: 'This page follows the order of the in-game **Progression** category: Flint, Stone, Wood, Fire, Pit Kiln and Pottery, Vessel, Copper and Metals. Each stage links to the full guide.' },
+        { note: 'The in-game guide lists the topics in this order but is not a strict tech tree. The dependencies below are the ones the guide describes explicitly.', kind: 'info' },
+        { h2: 'Stages' },
+        { stages: true },
+        { h2: 'Metal tiers at a glance' },
+        { kv: [
+          ['Extra: Gold', 'Very weak, but very efficient.', 'ok'],
+          ['Tier 1: Copper', 'First ore suitable for tools and metallic items. Very common, and the ore drops many raw chunks. Weak, but much better than stone.', 'ok'],
+          ['Tier 4: Iron and bronze', 'The exact middle of the progression, with medium durability and efficiency. Bronze is an alternative if you cannot find iron.', 'ok'],
+          ['Tier 5: Steel', 'High durability and efficiency; the maximum of the regular progression. It needs iron, so iron can never be skipped.', 'ok'],
+          ['Tier 6: Netherite', 'The best tools: huge durability and great breaking speed. It needs steel, like the vanilla diamond tier.', 'ok']
+        ] },
+        { note: 'The guide numbers the tiers 1, 4, 5 and 6; tiers 2 and 3 are not listed.', kind: 'info' },
+        { h2: 'Dependencies between systems' },
+        { list: [
+          'An axe is required to break wood and to create the stump; a pickaxe is required for stone.',
+          'The stump (axe + stripped log) chops logs into lumber and, with a pickaxe, stone blocks into pebbles.',
+          'A fire source is needed to ignite the pit kiln, and the pit kiln is needed to fire pottery and to melt vessels.',
+          'The vessel is the only way to get molten metal for now, and molten ingots are needed by the forge.',
+          'Handles: stick for most tools, silver rod for bronze and steel tools.',
+          'Steel needs nickel, iron and silver; netherite needs steel.',
+          'Flint and steel needs an ingot and a flint, and can only be crafted at later steps.'
+        ] },
+        { h2: 'Support systems' },
+        { p: 'Outside the main path, these systems help along the way: the [[basket|basket]] and [[barrel|barrel]] for storage, the [[leather-cycle|leather cycle]], the [[drying-rack|drying rack]], the [[sieve|sieve]] (can skip steps of the metal progression), the [[mortar|mortar]] and the [[electrics|electrics]].' }
+      ]
+    },
+    {
+      id: 'plant-fiber', cat: 'items', title: 'Plant fiber',
+      sum: 'Basic material obtained by sneaking and interacting with tall grass using an empty hand.',
+      tags: ['fiber', 'plant fiber', 'grass', 'tall grass', 'tallgrass'],
+      ver: CUR, src: ['guide', 'dev', 'cf'], st: 'ok', rel: ['fiber-gathering', 'recipe-string', 'straw', 'leather-cycle'],
+      body: [
+        { kv: [
+          ['Description', 'Starting material of the progression, obtained without tools.', 'ok'],
+          ['How to obtain', 'Sneak and interact with an empty hand on a tallgrass-like block.', 'ok'],
+          ['Used for', 'Making string; the tool crafting steps; tanning water in a barrel; a basket (2 sticks + 2 fibers).', 'ok'],
+          ['Drying', 'Dried at a [[drying-rack|drying rack]] it becomes straw. A plant fiber block becomes thatch.', 'ok'],
+          ['Related recipes', '[[recipe-string|String]], [[recipe-basket|Basket]].', 'ok'],
+          ['Progression stage', '[[progression-guide/stage-1|Stage 1 — Plant fiber and string]]', 'ok']
+        ] },
+        { note: 'The fiber gathering system changed in drop 2.2. See the [[v2-2|2.2 update]].', kind: 'info' }
+      ]
+    },
+    {
+      id: 'straw', cat: 'items', title: 'Straw',
+      sum: 'Dropped by tallgrass-like blocks when cut with a sword or knife; used for straw layers, kilns, thatch and fuel.',
+      tags: ['straw', 'thatch', 'fuel', 'layers', 'bed'],
+      ver: CUR, src: ['guide', 'cf'], st: 'ok', rel: ['fiber-gathering', 'fire', 'pit-kiln', 'pottery', 'drying-rack'],
+      body: [
+        { kv: [
+          ['How to obtain', 'Break grassy blocks with a sword or knife (up to 2 straws), or dry wheat or plant fiber at a drying rack.', 'ok'],
+          ['Straw layers', 'Place a straw on the ground to make a straw layer; up to three straws can be stacked. Layers are used for decoration or to make kilns.', 'ok'],
+          ['Pit kiln', 'Two logs added to a full straw layer make a [[pit-kiln|pit kiln]].', 'ok'],
+          ['Thatch', 'Straw is used to make thatch, which is used for straw beds.', 'ok'],
+          ['Fuel', 'Straw can be used as fuel.', 'ok'],
+          ['Layer loot', 'The loot from straw layers depends on the layer level (a bug in that loot was fixed in the drop 2.4 hotfix).', 'ok'],
+          ['Progression stage', '[[progression-guide/stage-5|Stage 5 — Pit kiln and pottery]]', 'ok']
+        ] }
+      ]
+    },
+    {
+      id: 'string', cat: 'items', title: 'String',
+      sum: 'Made from plant fibers; needed to assemble every primitive tool and the firebow.',
+      tags: ['string', 'thread', 'hand crafting'],
+      ver: CUR, src: ['guide', 'dev', 'cf'], st: 'ok', rel: ['recipe-string', 'plant-fiber', 'primitive-tools', 'recipe-firebow'],
+      body: [
+        { kv: [
+          ['Description', 'Retextured in drop 2.2.', 'ok'],
+          ['How to obtain', 'Made from plant fibers (hand crafting, according to the author). See [[recipe-string|String]].', 'ok'],
+          ['Used for', 'Combining a tool head with a stick to make a tool; the [[recipe-firebow|firebow]].', 'ok']
+        ] }
+      ]
+    },
+    {
+      id: 'lumber', cat: 'items', title: 'Lumber',
+      sum: 'A single plank obtained by chopping logs or planks on a stump; many wooden crafts now require it.',
+      tags: ['lumber', 'plank', 'planks', 'wood', 'stairs', 'slab', 'chest', 'barrel', 'door', 'boat'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['saw', 'wood-processing', 'stump', 'recipe-lumber', 'recipe-wooden-bucket'],
+      body: [
+        { kv: [
+          ['Description', 'A single plank, obtained by chopping a log or planks on a [[stump|stump]].', 'ok'],
+          ['Planks block', '4 lumbers craft 1 planks block.', 'ok'],
+          ['Wood stair', '3 lumbers.', 'ok'],
+          ['Slabs', '2 lumbers.', 'ok'],
+          ['Wooden bucket', '3 lumbers. See [[buckets|Buckets]].', 'ok']
+        ] },
+        { h2: 'Getting lumber with a saw' },
+        { p: 'Besides chopping on a [[stump|stump]], a metal [[saw|saw]] can break wooden blocks, destroying the block and dropping lumber.' },
+        { h2: 'Crafts that now require lumber' },
+        { list: ['Chest', 'Barrel', 'Door', 'Trapdoor', 'Boat', 'Composter', 'Drying rack', 'Fence', 'Fence gate', 'Hanging sign (regular signs are not affected yet)'] },
+        { note: 'This does not apply to nether woods or bamboo planks for now.', kind: 'warn' }
+      ]
+    },
+    {
+      id: 'hide', cat: 'items', title: 'Hide and leather',
+      sum: 'Hide replaces vanilla leather. It becomes leather only after a multi-step process.',
+      tags: ['hide', 'leather', 'scraped hide', 'dried hide', 'animal'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['leather-cycle', 'barrel', 'drying-rack'],
+      body: [
+        { kv: [
+          ['Hide', 'Dropped by animals. It replaces vanilla leather and cannot be used in crafting. Other addons use it for leather items.', 'ok'],
+          ['Scraped hide', 'Hide soaked in lime water for 1 minute in a [[barrel|barrel]].', 'ok'],
+          ['Dried hide', 'Scraped hide dried on a [[drying-rack|drying rack]].', 'ok'],
+          ['Leather', 'Dried hide soaked in tanning water for 2 minutes in a barrel.', 'ok'],
+          ['Full process', 'See [[leather-cycle|Leather cycle]]; about 5 minutes from hide to leather.', 'ok']
+        ] }
+      ]
+    },
+    {
+      id: 'basket', cat: 'items', title: 'Basket',
+      sum: 'Early-game storage made with 2 sticks and 2 plant fibers that holds 5 stacks.',
+      tags: ['basket', 'storage', 'chest', 'nugget'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['recipe-basket', 'plant-fiber'],
+      body: [
+        { kv: [
+          ['Why it exists', 'Chests now require a nugget, which is expensive in the early game. Baskets are the cheap alternative.', 'ok'],
+          ['Recipe', '2 sticks + 2 plant fibers.', 'ok'],
+          ['Capacity', '5 stacks.', 'ok']
+        ] }
+      ]
+    },
+    {
+      id: 'ores-metals', cat: 'items', title: 'Ores and metals',
+      sum: 'Hub for every ore: copper, tin, zinc, nickel, silver, saltpeter, sulphur, phosphorus, lithium, aluminum, francium and more.',
+      tags: ['ore', 'salpeter', 'saltpeter', 'lithium', 'aluminum', 'silver', 'tin', 'zinc', 'nickel', 'phosphorus', 'sulphur', 'sulfur', 'copper', 'metal', 'rose gold', 'brass', 'francium'],
+      ver: CUR, src: ['guide', 'cf', 'dev'], st: 'ok', img: IMG.items, rel: ['metallurgy', 'alloys', 'metal-tools', 'francium-items', 'nickel', 'steel'],
+      body: [
+        { h2: 'Gear and alloy metals' },
+        { kv: [
+          ['Copper', 'The first metal suitable for tools. The vanilla bucket is now made of copper. The addon’s own copper was removed in drop 2.1 in favor of vanilla copper.', 'ok'],
+          ['Iron and gold', 'Iron is mid-tier and required for steel. Gold is very weak but very efficient.', 'ok'],
+          ['Tin', 'Weak metal used only in alloys. See [[tin|Tin]].', 'ok'],
+          ['Zinc', 'Weak metal used only in alloys. See [[zinc|Zinc]].', 'ok'],
+          ['Nickel', 'An ingredient of steel. See [[nickel|Nickel]].', 'ok'],
+          ['Silver', 'Makes rods (handles for better tools) and bars, and is an alloy ingredient. See [[silver|Silver]].', 'ok']
+        ] },
+        { h2: 'Chemical and fire ores' },
+        { kv: [
+          ['Saltpeter', 'White ore found only in deserts; fertilizer and gunpowder. See [[saltpeter|Saltpeter]].', 'ok'],
+          ['Sulphur', 'Yellow ore used as fuel and to upgrade explosives. See [[sulphur|Sulphur]].', 'ok'],
+          ['Phosphorus', 'Dark-reddish ore for matchsticks, flares, flame traps and friction TNT. See [[phosphorus|Phosphorus]].', 'ok']
+        ] },
+        { h2: 'Electric metals' },
+        { p: 'Lithium, aluminum and rose gold are used on the electrics side of the addon and have no other function. See [[electrics|Electrics]].' },
+        { h2: 'Currently unused' },
+        { p: 'Francium and brass do nothing yet. Francium explodes in contact with water ([[francium-items|Francium]]) and brass is reserved for future machines ([[alloys|Alloys]]).' },
+        { h2: 'Drop rate history' },
+        { list: [
+          'Drop rates of saltpeter, lithium, aluminum, silver and tin were increased in drop 2.1.',
+          'Phosphorus and sulphur ores and craftings were added in drop 2.4.'
+        ] },
+      ]
+    },
+    {
+      id: 'saltpeter', cat: 'items', title: 'Saltpeter',
+      sum: 'White ore that aggregates to sandstone in deserts; smashed into bone meal or mixed into gunpowder.',
+      tags: ['saltpeter', 'salpeter', 'bone meal', 'gunpowder', 'desert', 'fertilizer'],
+      ver: CUR, src: ['guide', 'cf'], st: 'ok', rel: ['mortar', 'ores-metals'],
+      body: [{ kv: [
+        ['Appearance', 'White ore that aggregates to sandstone.', 'ok'],
+        ['Where', 'Only in deserts.', 'ok'],
+        ['Bone meal', 'Smashed at a [[mortar|mortar]] it gives 8 bone meal, so it is the addon’s main fertilizer.', 'ok'],
+        ['Gunpowder', 'Mixed with coal at a mortar.', 'ok']
+      ] }]
+    },
+    {
+      id: 'sulphur', cat: 'items', title: 'Sulphur',
+      sum: 'Yellow ore used mainly as fuel; good for torches and bonfires and for upgrading explosives.',
+      tags: ['sulphur', 'sulfur', 'fuel', 'torch', 'explosive'],
+      ver: CUR, src: ['guide', 'cf'], st: 'ok', rel: ['torches', 'bonfire', 'ores-metals'],
+      body: [{ kv: [
+        ['Appearance', 'Yellow ore.', 'ok'],
+        ['As fuel', 'Less efficient than coal in furnaces, but a good fuel for [[torches|torches]] and [[bonfire|bonfires]].', 'ok'],
+        ['Torch lighting', 'One of the best items to relight an unlit torch (with coal, matchsticks and flint and steel).', 'ok'],
+        ['Explosives', 'Can upgrade explosives into flammable versions.', 'ok']
+      ] }]
+    },
+    {
+      id: 'phosphorus', cat: 'items', title: 'Phosphorus',
+      sum: 'Dark-reddish ore used for matchsticks, flares, flame traps and friction TNT.',
+      tags: ['phosphorus', 'matchstick', 'flare', 'flame trap', 'friction tnt', 'tnt'],
+      ver: CUR, src: ['guide', 'cf'], st: 'ok', rel: ['recipe-matchsticks', 'fire', 'ores-metals'],
+      body: [{ kv: [
+        ['Appearance', 'Dark-reddish ore.', 'ok'],
+        ['Matchsticks', 'A reliable fire source. See [[recipe-matchsticks|Matchsticks]].', 'ok'],
+        ['Flares', 'Release a big smoke to signal the player’s presence.', 'ok'],
+        ['Flame traps', 'Blocks that set fire on top when an entity is above them.', 'ok'],
+        ['Friction TNT', 'A very unstable TNT that explodes automatically when lit or moved by a piston.', 'ok']
+      ] }]
+    },
+    {
+      id: 'silver', cat: 'items', title: 'Silver',
+      sum: 'Makes the silver rod used as a handle for better tools, plus bars and alloys.',
+      tags: ['silver', 'rod', 'bars', 'handle'],
+      ver: CUR, src: ['guide', 'cf'], st: 'ok', rel: ['alloys', 'recipe-forge-items', 'electrics'],
+      body: [{ kv: [
+        ['Silver rod', 'Handle for better tools. Bronze and steel tools need it instead of a stick.', 'ok'],
+        ['Bars', 'Silver can craft bars.', 'ok'],
+        ['Alloys', 'Ingredient of [[alloys|rose gold and steel]].', 'ok'],
+        ['Electrics', 'Silver rods are one of the main electrics resources.', 'ok']
+      ] }]
+    },
+    {
+      id: 'tin', cat: 'items', title: 'Tin',
+      sum: 'A weak metal used only to make bronze with copper.',
+      tags: ['tin', 'bronze', 'alloy'],
+      ver: CUR, src: ['guide', 'cf'], st: 'ok', rel: ['alloys', 'ores-metals'],
+      body: [{ kv: [
+        ['Description', 'Weak metal that is only used to make alloys.', 'ok'],
+        ['Bronze', 'Combined with copper (3 copper + 1 tin) it makes bronze, one of the most useful alloys of the addon.', 'ok']
+      ] }]
+    },
+    {
+      id: 'zinc', cat: 'items', title: 'Zinc',
+      sum: 'A weak metal used only to make brass with copper.',
+      tags: ['zinc', 'brass', 'alloy'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['alloys', 'ores-metals'],
+      body: [{ kv: [
+        ['Description', 'Weak metal that is only used to make alloys.', 'ok'],
+        ['Brass', 'Combined with copper (2 copper + 2 zinc) it makes brass. Brass is currently useless but will be used for machines in the future.', 'ok']
+      ] }]
+    },
+    {
+      id: 'francium-items', cat: 'items', title: 'Francium',
+      sum: 'Highly reactive ore that explodes like TNT in contact with water. Currently without other uses.',
+      tags: ['francium', 'water', 'warning', 'explosion', 'radioactive'],
+      ver: CUR, src: ['guide', 'cf'], st: 'ok', rel: ['soaking', 'metal-tools', 'ores-metals'],
+      body: [
+        { note: 'Never drop francium in water, and never enter water while using a francium item (author’s warning).', kind: 'warn' },
+        { kv: [
+          ['Reaction', 'Explodes like TNT when it touches water. See [[soaking|Soaking]].', 'ok'],
+          ['Current use', 'None yet.', 'ok'],
+          ['Future use', 'Planned as radioactive power and for bombs.', 'ok'],
+          
+        ] }
+      ]
+    },
+    {
+      id: 'nickel', cat: 'items', title: 'Nickel',
+      sum: 'Ingredient of steel: half of the alloy is nickel.',
+      tags: ['nickel', 'steel', 'diamond', 'netherite'],
+      ver: CUR, src: ['guide', 'dev'], st: 'ok', rel: ['steel', 'alloys', 'recipe-netherite'],
+      body: [
+        { kv: [
+          ['Role', 'Steel is 50% nickel, 25% iron and 25% silver (2 nickel + 1 iron + 1 silver).', 'ok'],
+          
+        ] },
+        { note: 'An older reply from the author called the diamond tier “nickel(diamond)”. The current guide says steel replaces the diamond tier, so nickel is best understood as the main ingredient of steel.', kind: 'info' }
+      ]
+    },
+    {
+      id: 'steel', cat: 'items', title: 'Steel',
+      sum: 'Alloy of nickel, iron and silver; the top of the regular progression and the replacement for the vanilla diamond tier.',
+      tags: ['steel', 'alloy', 'diamond'],
+      ver: CUR, src: ['guide', 'dev'], st: 'ok', rel: ['alloys', 'nickel', 'metal-tools', 'recipe-netherite', 'compatibility'],
+      body: [{ kv: [
+        ['Recipe', '50% nickel, 25% iron, 25% silver in a [[vessel|vessel]] (2 nickel + 1 iron + 1 silver), melted in a pit kiln.', 'ok'],
+        ['Quality', 'Very good tools, with high durability and efficiency.', 'ok'],
+        ['Handle', 'Steel tools use a silver rod.', 'ok'],
+        ['Diamond tier', 'Steel replaces the vanilla diamond tier for tools and armor. The diamond item is not removed, and it stays compatible with any addon.', 'ok'],
+        ['Netherite', 'Netherite needs steel to be made.', 'ok'],
+        ['ID', 'The author said the steel ID cannot be changed because it would wipe existing steel.', 'ok']
+      ] }]
+    },
+    {
+      id: 'survival-guide', cat: 'items', title: 'Survival Guide (guide book)',
+      sum: 'The in-game book with the addon’s information. It also opens with the /aca:guide_progression command.',
+      tags: ['guide', 'book', 'survival guide', 'command', 'aca:guide_progression', 'progression_guide', 'world rules'],
+      ver: CUR, src: ['guide', 'cf', 'dev'], st: 'ok', rel: ['world-rules', 'beginners-guide', 'progression-guide'],
+      body: [
+        { kv: [
+          ['Description', 'Guide book with detailed information, added in drop 2.2. In the book itself the addon is presented as “Aurorian Progression”.', 'ok'],
+          ['How to obtain', 'Given when the player spawns.', 'ok'],
+          ['How to open', 'Use the book (item `aca:progression_guide`) or run `/aca:guide_progression`, which any player can use.', 'ok'],
+          ['Categories', 'Introduction, Progression, Other and World Rules.', 'ok'],
+          ['Navigation', 'Each page has a “Go back” button (drop 2.3).', 'ok']
+        ] },
+        { h2: 'Progression pages' },
+        { p: 'Flint (optional), Stone, Wood, Fire, Pit Kiln and Pottery, Vessel, Copper and Metals. See the [[progression-guide|Progression guide]].' },
+        { h2: 'Other pages' },
+        { p: 'Destroying Blocks ([[destroying-blocks|link]]), Basket ([[basket|link]]), Bonfires ([[bonfire|link]]), Torches ([[torches|link]]), Buckets ([[buckets|link]]), Furnaces ([[furnaces|link]]), Barrel ([[barrel|link]]), Leather Cycle ([[leather-cycle|link]]), Drying Rack ([[drying-rack|link]]), Soaking ([[soaking|link]]), Sieve ([[sieve|link]]), Mortar ([[mortar|link]]), Ores ([[ores-metals|link]]) and Electrics ([[electrics|link]]).' },
+        { h2: 'World Rules' },
+        { p: 'Opens the rules menu. See [[world-rules|World Rules]].' },
+        { note: 'The book credits are listed on the [[about|About]] page.', kind: 'info' }
+      ]
+    },
+    {
+      id: 'primitive-tools', cat: 'tools', title: 'Primitive tools (stone and flint)',
+      sum: 'Stone and flint tools: a knapped head, a stick and a string.',
+      tags: ['hatchet', 'hammer', 'flint', 'stone', 'primitive', 'axe', 'pickaxe', 'pebble', 'tool head'],
+      ver: CUR, src: ['guide', 'cf', 'dev'], st: 'ok', img: IMG.knap, rel: ['knapping', 'string', 'wood-processing', 'recipe-forge-items'],
+      body: [
+        { h2: 'Stone tools' },
+        { p: 'Stone tools are the true start of survival and are crucial for progression. Knap a pebble on a hard block to turn it into a tool head, then take the head in hand and combine it with a stick and a string.' },
+        { h2: 'Flint tools (optional)' },
+        { p: 'Flint tools are made the same way as stone ones and are as common as stone, which makes the flint tier optional. A regular flint is knapped into the chosen head.' },
+        { h2: 'What the tools do' },
+        { list: [
+          'An axe is required to break wood and to create the stump. See [[destroying-blocks|Destroying blocks]].',
+          'A pickaxe is required for stony blocks, and also chops stone into pebbles on a stump.',
+          'Any hammer, even a stone one, can wrought items at the [[forge|forge]].',
+          'A sword or knife cuts tallgrass-like blocks into straw.'
+        ] },
+        { h2: 'Details' },
+        { list: [
+          'Stone and flint tools and hammers were retextured in drop 2.2.',
+          'String comes from plant fibers. See [[recipe-string|String]].'
+        ] },
+        { h2: 'Progression stage' },
+        { p: '[[progression-guide/stage-2|Stage 2 — Knapping: stone and flint tools]].' }
+      ]
+    },
+    {
+      id: 'metal-tools', cat: 'tools', title: 'Metal tools and armor',
+      sum: 'Copper, bronze, iron, steel and netherite gear, all made at the forge from molds and molten ingots.',
+      tags: ['tool', 'armor', 'durability', 'copper', 'iron', 'bronze', 'steel', 'netherite', 'gold', 'handle'],
+      ver: CUR, src: ['guide', 'cf', 'dev'], st: 'ok', img: IMG.forge, rel: ['saw', 'forge', 'recipe-forge-items', 'alloys', 'steel', 'recipe-netherite', 'progression-guide'],
+      body: [
+        { h2: 'Tiers' },
+        { list: [
+          'Gold (extra): very weak but very efficient.',
+          'Copper: the first tier, weak but far better than stone.',
+          'Iron and bronze: medium durability and efficiency. Bronze is an alternative to iron.',
+          'Steel: high durability and efficiency; the top of the regular progression.',
+          'Netherite: huge durability and great breaking speed; needs steel.'
+        ] },
+        { h2: 'Saws' },
+        { p: 'The [[saw|saw]] is a metal tool that can break and interact with wood. Breaking a wooden block with it destroys the block and drops [[lumber|lumber]]. It is forged like any other metal tool: fired mold, molten ingot, hammer and handle.' },
+        { h2: 'How metal gear is made' },
+        { list: [
+          'Metal items (pickaxes, axes, saws, armor and so on) are wrought at the [[forge|forge]] from a fired mold and a molten ingot. See [[recipe-forge-items|Smithing process]].',
+          'Most tools use a stick as handle; bronze and steel tools use a silver rod.',
+          'Armor pieces need the same ingot as the molten metal (for example, an iron chestplate needs an iron ingot).'
+        ] },
+        { h2: 'Recycling' },
+        { p: 'A tool or armor can be melted into a [[vessel|vessel]]. It fills all four slots, and durability, enchantments and names are lost. The item cannot be taken back out.' },
+        { h2: 'History' },
+        { list: [
+          'Drop 2.1 reduced the durability of lithium, aluminum, silver and tin gear to sit close to vanilla copper.',
+          'The current in-game guide no longer lists those metals as tool tiers.'
+        ] },
+      ]
+    },
+    {
+      id: 'saw', cat: 'tools', title: 'Saw',
+      sum: 'A metal tool that breaks and interacts with wood, destroying the block and dropping lumber.',
+      tags: ['saw', 'serra', 'lumber', 'wood', 'log', 'planks', 'metal tool'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['lumber', 'wood-processing', 'stump', 'metal-tools', 'forge', 'recipe-forge-items'],
+      body: [
+        { h2: 'What it does' },
+        { p: 'The saw is a metal tool made for wood. It can break and interact with wooden blocks: the block is destroyed and drops [[lumber|lumber]]. That makes it the metal-age alternative to chopping logs on a [[stump|stump]] with an axe. See [[wood-processing|Wood processing]].' },
+        { h2: 'How to make it' },
+        { p: 'Saws are crafted like any other metal tool, through the [[forge|forge]]:' },
+        { list: [
+          'Place a fired saw mold on the forge (model clay into the mold and fire it in a pit kiln or furnace).',
+          'Place a molten ingot of the metal you want.',
+          'Wrought it with any hammer.',
+          'Add the handle, following the same rules as the other metal tools.'
+        ] },
+        { p: 'Full details in [[recipe-forge-items|Smithing process]] and [[metal-tools|Metal tools and armor]].' },
+        { h2: 'Related' },
+        { list: [
+          '[[lumber|Lumber]]: what the saw drops and what it is used for.',
+          '[[wood-processing|Wood processing]]: the full path from log to planks.',
+          '[[stump|Stump]]: the early-game way to get lumber.'
+        ] }
+      ]
+    },
+    {
+      id: 'buckets', cat: 'tools', title: 'Buckets',
+      sum: 'The wooden bucket (3 lumbers) and the copper bucket, which replaces the vanilla iron one.',
+      tags: ['bucket', 'wooden bucket', 'copper bucket', 'lava', 'fish'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['recipe-wooden-bucket', 'lumber', 'barrel'],
+      body: [{ kv: [
+        ['Purpose', 'Transport liquids.', 'ok'],
+        ['Wooden bucket', 'Crafted with 3 lumbers. It works like the vanilla bucket and holds everything it holds, except lava and fish (because of data-preserving problems).', 'ok'],
+        ['Copper bucket', 'The vanilla bucket is now made of copper.', 'ok']
+      ] }]
+    },
+    {
+      id: 'recipe-string', cat: 'recipes', title: 'String',
+      sum: 'Hand crafting from plant fibers.',
+      tags: ['string', 'hand crafting', 'thread'],
+      ver: CUR, src: ['guide', 'dev'], st: 'tbc', rel: ['plant-fiber', 'string', 'fiber-gathering'],
+      body: [{ kv: [
+        ['Station', 'None: hand crafting (according to the author).', 'ok'],
+        ['Materials', 'Plant fibers. The guide states that string is made from plant fibers.', 'ok'],
+        
+        ['Result', 'String.', 'ok']
+      ] }]
+    },
+    {
+      id: 'recipe-lumber', cat: 'recipes', title: 'Lumber and planks',
+      sum: 'Chop wood on a stump to get lumber; craft planks, stairs and slabs from lumber.',
+      tags: ['lumber', 'planks', 'stairs', 'slab', 'stump'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['saw', 'lumber', 'stump', 'wood-processing'],
+      body: [{ kv: [
+        ['Lumber', 'Interact with a log (or planks) and then with an axe on a [[stump|stump]].', 'ok'],
+        ['Lumber with a saw', 'Break a wooden block with a metal [[saw|saw]]: the block is destroyed and drops lumber.', 'ok'],
+        ['Planks block', '4 lumbers.', 'ok'],
+        ['Wood stair', '3 lumbers.', 'ok'],
+        ['Slabs', '2 lumbers.', 'ok'],
+        ['Exceptions', 'Nether woods and bamboo planks are not affected for now.', 'ok']
+      ] }]
+    },
+    {
+      id: 'recipe-stump', cat: 'recipes', title: 'Stump',
+      sum: 'Made by interacting with an axe on a stripped log.',
+      tags: ['stump', 'axe', 'stripped log'],
+      ver: CUR, src: ['guide', 'dev'], st: 'ok', rel: ['stump', 'wood-processing', 'primitive-tools'],
+      body: [
+        { kv: [
+          ['Procedure', 'Interact with an axe on a stripped log.', 'ok'],
+          ['Result', 'Stump.', 'ok'],
+          ['Required tool', 'An axe. Without one you cannot even break wood.', 'ok']
+        ] },
+        { note: 'In Aug 2025 the author said the stump recipe required the flint hatchet and that the stump would be reworked. The current guide only mentions an axe, so that older statement may be outdated.', kind: 'info' }
+      ]
+    },
+    {
+      id: 'recipe-firebow', cat: 'recipes', title: 'Firebow',
+      sum: '2 sticks, 1 pebble and 1 string. A very unreliable fire source.',
+      tags: ['firebow', 'fire', 'sticks', 'pebble', 'string'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['fire', 'string'],
+      body: [{ kv: [
+        ['Materials', '2 sticks, 1 pebble, 1 string.', 'ok'],
+        ['Success rate', '10%.', 'ok'],
+        ['Durability', '10 points.', 'ok']
+      ] }]
+    },
+    {
+      id: 'recipe-matchsticks', cat: 'recipes', title: 'Matchsticks',
+      sum: 'A stick plus phosphorus. 100% success, one use per stick.',
+      tags: ['matchstick', 'matchsticks', 'phosphorus', 'fire'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['fire', 'phosphorus'],
+      body: [{ kv: [
+        ['Materials', '1 stick + 1 phosphorus in the crafting slots.', 'ok'],
+        ['Success rate', '100%.', 'ok'],
+        ['Uses', 'Only one use per stick.', 'ok']
+      ] }]
+    },
+    {
+      id: 'recipe-flint-steel', cat: 'recipes', title: 'Flint and steel',
+      sum: 'One ingot of any type and one flint. The best fire source, possible only at later steps.',
+      tags: ['flint and steel', 'flint', 'ingot', 'fire'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['fire', 'forge'],
+      body: [{ kv: [
+        ['Materials', '1 ingot (any type) + 1 flint.', 'ok'],
+        ['Success rate', '100%, with plenty of durability.', 'ok'],
+        ['Availability', 'It can only be crafted at later steps of the progression (it needs an ingot).', 'ok']
+      ] }]
+    },
+    {
+      id: 'recipe-basket', cat: 'recipes', title: 'Basket',
+      sum: '2 sticks and 2 plant fibers.',
+      tags: ['basket'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['basket'],
+      body: [{ kv: [
+        ['Materials', '2 sticks + 2 plant fibers.', 'ok'],
+        ['Capacity', '5 stacks.', 'ok']
+      ] }]
+    },
+    {
+      id: 'recipe-bonfire', cat: 'recipes', title: 'Bonfire',
+      sum: 'Made with 4 sticks, one of the simplest crafts of the addon.',
+      tags: ['bonfire', 'sticks'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['bonfire', 'fire'],
+      body: [{ kv: [
+        ['Materials', '4 sticks.', 'ok'],
+        ['Fuel', 'Needs fuel: coal, sulphur, wood items or small flammable items.', 'ok']
+      ] }]
+    },
+    {
+      id: 'recipe-wooden-bucket', cat: 'recipes', title: 'Wooden bucket',
+      sum: '3 lumbers.',
+      tags: ['wooden bucket', 'bucket', 'lumber'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['buckets', 'lumber'],
+      body: [{ kv: [
+        ['Materials', '3 lumbers.', 'ok'],
+        ['Limits', 'Cannot hold lava or fish.', 'ok']
+      ] }]
+    },
+    {
+      id: 'recipe-forge', cat: 'recipes', title: 'Forge',
+      sum: '7 copper ingots shaped like the vanilla anvil recipe (no blocks needed).',
+      tags: ['forge', 'anvil', 'copper ingots', 'craft'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['forge', 'vessel', 'metallurgy'],
+      body: [
+        { kv: [
+          ['Materials', '7 copper ingots (made from molten copper).', 'ok'],
+          ['Shape', 'The same shape as the anvil recipe, without needing the blocks.', 'ok'],
+          ['Fastest route', 'Craft 7 vessels, fill them with copper (28 raw copper in total) and put them in 7 different pit kilns at once.', 'ok'],
+          ['Ingots', 'Put the molten metal in the crafting slot to get the ingot.', 'ok']
+        ] },
+        { note: 'A pit kiln takes 5 minutes per batch, so using 7 kilns at the same time saves time.', kind: 'info' }
+      ]
+    },
+    {
+      id: 'recipe-forge-items', cat: 'recipes', title: 'Smithing process (metal items)',
+      sum: 'The full path of a metal item, from raw ore to a finished tool: vessel, pit kiln, mold, forge, hammer and handle.',
+      tags: ['smithing', 'mold', 'molten ingot', 'hammer', 'handle', 'wrought', 'armor', 'silver rod'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['forge', 'vessel', 'pit-kiln', 'pottery', 'metal-tools', 'silver', 'alloys'],
+      body: [
+        { p: 'Making a metal tool takes two separate preparations that meet at the [[forge|forge]]: the **metal** (melted in a vessel) and the **mold** (made of clay). Do both first, then forge.' },
+        { h2: 'Part 1 — Prepare the metal' },
+        { list: [
+          'Model clay into an unfired [[vessel|vessel]] and fire it in a [[pit-kiln|pit kiln]] or furnace.',
+          'Hold use (like drawing a bow) to open the vessel screen and fill its four slots with raw metal. Four of the same metal give a pure metal; a mix must follow the exact [[alloys|alloy proportions]].',
+          'Place the filled vessel in a pit kiln, light it and wait 5 minutes. The vessel comes out holding molten metal.',
+          'The result is the molten version of the metal. Put it in the crafting slot if you want a plain ingot; place it directly on the forge if you want to forge an item.'
+        ] },
+        { h2: 'Part 2 — Prepare the mold' },
+        { list: [
+          'Hold clay while sneaking and hold use to open the modelling screen.',
+          'Choose the mold of the item you want (tool head, armor piece...). You receive the unfired mold.',
+          'Fire it in a pit kiln or furnace. Only the fired mold can be used on the forge.'
+        ] },
+        { h2: 'Part 3 — At the forge' },
+        { list: [
+          '**Mold:** put the fired mold on the forge.',
+          '**Metal:** place the molten ingot on it.',
+          '**Hammer:** interact with any hammer, even a stone one. The metal is wrought into the shape of the mold and the hammer loses durability.',
+          '**Handle:** add the handle. A stick for most metal tools; a silver rod for bronze and steel.',
+          '**Armor:** armor pieces need the same ingot as the molten metal (an iron chestplate needs an iron ingot).'
+        ] },
+        { p: 'Saws follow exactly this process: fired saw mold, molten ingot, hammer and handle. See [[saw|Saw]].' },
+        { h2: 'Checklist before forging' },
+        { kv: [
+          ['Fired mold', 'Of the exact piece you want.'],
+          ['Molten ingot', 'Of the exact material you want.'],
+          ['Hammer', 'Any hammer, with durability left.'],
+          ['Handle', 'Stick, or silver rod for bronze and steel.']
+        ] },
+        { note: 'Not happy with a tool or armor? You can recycle it in a vessel, but it fills all four slots and loses its durability, enchantments and name. See [[vessel|Vessel]].', kind: 'warn' }
+      ]
+    },
+    {
+      id: 'alloys', cat: 'recipes', title: 'Alloys and proportions',
+      sum: 'Bronze, brass, rose gold and steel: the exact vessel proportions to avoid molten scraps.',
+      tags: ['alloy', 'bronze', 'brass', 'rose gold', 'steel', 'proportions', 'vessel', 'molten scraps'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['vessel', 'steel', 'tin', 'zinc', 'silver', 'nickel'],
+      body: [
+        { p: 'Each alloy needs an exact proportion across the four vessel slots. A wrong proportion produces molten scraps, which are useless.' },
+        { kv: [
+          ['Bronze', '75% copper, 25% tin: 3 copper + 1 tin.', 'ok'],
+          ['Brass', '50% copper, 50% zinc: 2 copper + 2 zinc. Currently useless, planned for machines.', 'ok'],
+          ['Rose gold', '50% gold, 25% copper, 25% silver: 2 gold + 1 copper + 1 silver. Used to make wires.', 'ok'],
+          ['Steel', '50% nickel, 25% iron, 25% silver: 2 nickel + 1 iron + 1 silver.', 'ok']
+        ] },
+        { note: 'Four slots filled with the same raw metal make a pure molten metal. At least one empty slot always gives molten scraps.', kind: 'info' }
+      ]
+    },
+    {
+      id: 'recipe-blast-furnace', cat: 'recipes', title: 'Blast furnace',
+      sum: '5 ingots, a regular furnace and 3 brick blocks.',
+      tags: ['blast furnace', 'ingots', 'brick blocks', 'furnace'],
+      ver: CUR, src: ['guide', 'dev', 'users'], st: 'ok', rel: ['blast-furnace', 'furnaces', 'pottery'],
+      body: [
+        { kv: [
+          ['Materials', '5 ingots, 1 regular furnace and 3 brick blocks.', 'ok'],
+          ['Brick blocks', 'Bricks are modelled from clay and fired like any pottery piece.', 'ok'],
+          ['Result', 'Blast furnace.', 'ok']
+        ] },
+        { note: 'In Aug 2025 the author said it could be crafted with raw lithium, and a player reported raw gold and polished blackstone in the recipe book. The current guide gives the recipe above, so those older statements may be outdated. Check in-game if in doubt.', kind: 'warn' }
+      ]
+    },
+    {
+      id: 'recipe-netherite', cat: 'recipes', title: 'Netherite and upgrades',
+      sum: 'Netherite follows the vanilla smithing path, but it needs steel instead of diamond.',
+      tags: ['netherite', 'smithing', 'upgrade', 'steel'],
+      ver: CUR, src: ['guide', 'dev'], st: 'ok', rel: ['steel', 'nickel', 'metal-tools'],
+      body: [
+        { kv: [
+          ['Station', 'Smithing table (author’s description).', 'ok'],
+          ['Requirement', 'Netherite needs steel to be made, just like the vanilla diamond tier.', 'ok'],
+          ['Procedure', 'Same method as regular Minecraft, according to the author.', 'ok']
+        ] },
+      ]
+    },
+    {
+      id: 'fiber-gathering', cat: 'mechanics', title: 'Fiber gathering',
+      sum: 'Sneak and interact with tall grass using an empty hand; cutting grass with a sword or knife gives straw.',
+      tags: ['fibers', 'gathering', 'sneak', 'tall grass', 'straw'],
+      ver: CUR, src: ['guide', 'cf', 'dev'], st: 'ok', rel: ['plant-fiber', 'straw', 'recipe-string'],
+      body: [
+        { h2: 'How it works' },
+        { list: [
+          'Sneak and interact with an empty hand on a tallgrass-like block to get plant fiber (system added in drop 2.2).',
+          'Cutting tallgrass-like blocks with a sword or knife drops up to 2 straws instead. See [[straw|Straw]].',
+          'String is made from plant fibers.'
+        ] },
+        { h2: 'Addon or regular Minecraft mechanic?' },
+        { p: 'It is an **addon** mechanic: in regular Minecraft tall grass does not give fibers this way.' }
+      ]
+    },
+    {
+      id: 'knapping', cat: 'mechanics', title: 'Knapping',
+      sum: 'Sneak and interact with a pebble or flint on a hard block, then choose the tool head.',
+      tags: ['knapping', 'pebble', 'stone', 'flint', 'tool head'],
+      ver: CUR, src: ['guide', 'cf'], st: 'ok', img: IMG.knap, rel: ['primitive-tools', 'recipe-stump'],
+      body: [
+        { h2: 'How it works' },
+        { list: [
+          'Pebbles and flint can be knapped on hard blocks.',
+          'While sneaking, interact with the item. A menu shows every possible shape.',
+          'Once you select one, the pebble or flint becomes the matching tool head.',
+          'With the head in hand, add a stick and a string to make the tool.'
+        ] },
+        { h2: 'Flint vs. stone' },
+        { p: 'Flint tools are optional because stone tools are made the same way and are as common.' },
+      ]
+    },
+    {
+      id: 'wood-processing', cat: 'mechanics', title: 'Wood processing',
+      sum: 'Axe, stump, lumber and planks: wood takes many steps in this addon.',
+      tags: ['wood', 'stump', 'lumber', 'planks', 'axe', 'log'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['saw', 'stump', 'lumber', 'recipe-lumber', 'destroying-blocks'],
+      body: [
+        { h2: 'Steps' },
+        { list: [
+          'Get an axe. Without one you cannot break wood or create a stump.',
+          'Interact with an axe on a stripped log to create a [[stump|stump]].',
+          'On the stump, interact with the log and then with an axe to chop it into [[lumber|lumber]]. A stump can also chop stone blocks into pebbles with a pickaxe.',
+          'Craft the planks block from lumber.'
+        ] },
+        { h2: 'Faster alternative: the saw' },
+        { p: 'Once you reach metal, a [[saw|saw]] can break and interact with wood directly: the block is destroyed and drops lumber, with no stump needed. Saws are metal tools made at the [[forge|forge]].' },
+        { note: 'Nether woods and bamboo planks are not affected yet.', kind: 'warn' },
+        { h2: 'Progression stage' },
+        { p: '[[progression-guide/stage-3|Stage 3 — Wood: stump, lumber and planks]].' }
+      ]
+    },
+    {
+      id: 'destroying-blocks', cat: 'mechanics', title: 'Destroying blocks',
+      sum: 'Wooden blocks need an axe, stony blocks a pickaxe; breaking them by hand hurts and drops nothing.',
+      tags: ['breaking', 'destroying', 'axe', 'pickaxe', 'damage', 'tallgrass', 'straw'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['saw', 'wood-processing', 'primitive-tools', 'straw'],
+      body: [{ kv: [
+        ['Wooden blocks', 'Require an axe. Breaking them without one hurts the player and drops nothing. A metal [[saw|saw]] can also break wood, dropping lumber.', 'ok'],
+        ['Stony blocks', 'Require a pickaxe. Breaking them without one hurts the player and drops nothing.', 'ok'],
+        ['Tallgrass-like blocks', 'Can be chopped with a sword or knife and drop up to 2 straws. Straw makes thatch, which is used for straw beds.', 'ok']
+      ] }]
+    },
+    {
+      id: 'fire', cat: 'mechanics', title: 'Fire sources',
+      sum: 'Firebow, matchsticks and flint and steel, plus the bonfire and torches.',
+      tags: ['fire', 'bonfire', 'firebow', 'torch', 'matchsticks', 'flint and steel'],
+      ver: CUR, src: ['guide', 'cf'], st: 'ok', rel: ['recipe-firebow', 'recipe-matchsticks', 'recipe-flint-steel', 'bonfire', 'torches', 'pit-kiln'],
+      body: [
+        { h2: 'Firebow' },
+        { p: 'The most primitive way to make fire: 2 sticks, 1 pebble and 1 string. It is not reliable: just 10% success and 10 durability. See [[recipe-firebow|Firebow]].' },
+        { h2: 'Matchsticks' },
+        { p: 'Much better than the firebow: a stick and a phosphorus. 100% success, but only one use per stick. See [[recipe-matchsticks|Matchsticks]].' },
+        { h2: 'Flint and steel' },
+        { p: 'So far the best source: plenty of durability and 100% success. It takes one ingot of any type and one flint, so it can only be crafted at later steps. See [[recipe-flint-steel|Flint and steel]].' },
+        { h2: 'Fire in the world' },
+        { list: [
+          'The [[bonfire|bonfire]] gives light, warmth and cooking, and scares predators.',
+          '[[torches|Torches]] go out over time and need relighting.',
+          'The [[pit-kiln|pit kiln]] can be ignited with any fire source and needs no fuel.'
+        ] },
+        { h2: 'Progression stage' },
+        { p: '[[progression-guide/stage-4|Stage 4 — Fire]].' }
+      ]
+    },
+    {
+      id: 'torches', cat: 'mechanics', title: 'Torches and dynamic light',
+      sum: 'Torches go out over time and need fuel; dynamic light makes held torches glow.',
+      tags: ['torch', 'torches', 'dynamic light', 'unlit', 'offhand', 'fuel'],
+      ver: CUR, src: ['guide', 'cf'], st: 'ok', rel: ['world-rules', 'sulphur', 'recipe-matchsticks', 'fire'],
+      body: [
+        { h2: 'Fuel' },
+        { p: 'Unlike vanilla, torches go out over time and need fuel to stay lit. Place the unlit torch and interact with a flammable item on it. Each item has a different chance of lighting it; coal, sulphur, matchsticks and flint and steel are the best.' },
+        { h2: 'Dynamic light' },
+        { p: 'The addon has a dynamic light system and torches are included. A torch in the offhand lights the way around you. A torch can suddenly go out, which improves the atmosphere.' },
+        { note: 'Both features can be disabled in [[world-rules|World Rules]] (“Torches Go Out” and “Dynamic Light”).', kind: 'info' }
+      ]
+    },
+    {
+      id: 'pottery', cat: 'mechanics', title: 'Pottery',
+      sum: 'Model clay into unfired pieces, then fire them in a pit kiln or furnace.',
+      tags: ['pottery', 'clay', 'pit kiln', 'ceramic', 'jar', 'mold', 'brick', 'vessel'],
+      ver: CUR, src: ['guide', 'cf'], st: 'ok', rel: ['pit-kiln', 'vessel', 'straw', 'fire'],
+      body: [
+        { h2: 'Modelling' },
+        { p: 'Hold clay in your hand while sneaking and hold use (like drawing a bow) to open the modelling screen. Pick a piece to receive its unfired version. Fire it in a [[pit-kiln|pit kiln]] or a furnace.' },
+        { h2: 'Pieces' },
+        { kv: [
+          ['Brick', 'The regular vanilla brick.', 'ok'],
+          ['Jar', 'Storage item, similar to a bundle. Holds 32 mixed items.', 'ok'],
+          ['Molds', 'Used by the forging system. See [[recipe-forge-items|Smithing process]].', 'ok'],
+          ['Vessel', 'Used to make molten metal. See [[vessel|Vessel]].', 'ok']
+        ] },
+        { h2: 'Straw layers' },
+        { p: 'Placing straw on the ground makes straw layers (up to three stacked) for decoration or kilns. See [[straw|Straw]].' },
+        { h2: 'Progression stage' },
+        { p: '[[progression-guide/stage-5|Stage 5 — Pit kiln and pottery]].' }
+      ]
+    },
+    {
+      id: 'metallurgy', cat: 'mechanics', title: 'Metallurgy',
+      sum: 'The complete chain from raw ore to a finished tool: vessel, pit kiln, molten metal, mold, forge, hammer and handle.',
+      tags: ['metallurgy', 'forge', 'smelting', 'molten metal', 'vessel', 'blast furnace', 'cauldron', 'foundry', 'ingot'],
+      ver: CUR, src: ['guide', 'cf', 'dev', 'users'], st: 'ok', rel: ['vessel', 'forge', 'alloys', 'recipe-forge', 'recipe-forge-items', 'pit-kiln', 'pottery', 'silver'],
+      body: [
+        { h2: 'The big picture' },
+        { p: 'Metal is not smelted in a furnace here. It goes through a chain of stations, and each one has a job:' },
+        { list: [
+          '**Pottery:** clay is modelled into a vessel and into molds, then fired. See [[pottery|Pottery]].',
+          '**Vessel:** four raw metals go inside. The mix decides what you get. See [[vessel|Vessel]].',
+          '**Pit kiln:** melts the vessel in 5 minutes. See [[pit-kiln|Pit kiln]].',
+          '**Crafting slot:** molten metal becomes an ingot there.',
+          '**Forge:** mold + molten ingot + hammer + handle become a tool or armor. See [[forge|Forge]].'
+        ] },
+        { h2: 'Your first metal: copper' },
+        { list: [
+          'Mine 28 raw copper.',
+          'Make 7 vessels, fill each with 4 raw copper and fire them in 7 pit kilns at the same time (5 minutes).',
+          'Put each molten copper in the crafting slot to get 7 ingots.',
+          'Craft the [[forge|forge]] with the anvil shape. From now on you can forge copper tools.'
+        ] },
+        { h2: 'Making a metal item' },
+        { p: 'Place a fired mold on the forge, then a molten ingot, strike it with any hammer, and add the handle (stick, or silver rod for bronze and steel). Armor pieces need the same ingot as the molten metal. Full details in [[recipe-forge-items|Smithing process]].' },
+        { h2: 'Pure metals and alloys' },
+        { list: [
+          'Same metal in all four slots: pure molten metal.',
+          'Mixed metals: an alloy, but only with the exact [[alloys|proportions]]: bronze 3 copper + 1 tin, brass 2 copper + 2 zinc, rose gold 2 gold + 1 copper + 1 silver, steel 2 nickel + 1 iron + 1 silver.',
+          'An empty slot or a wrong proportion gives molten scraps, which are useless.'
+        ] },
+        { h2: 'Recycling' },
+        { p: 'A tool or armor can be melted back into a vessel with the Add Item button. It fills all four slots and loses durability, enchantments and name, and it cannot be taken out again.' },
+        { h2: 'History' },
+        { list: [
+          'The foundry cauldron was removed in drop 2.4 to make way for the vessel.',
+          'A bug that erased the molten metal stack on the forge was fixed in the drop 2.4 hotfix.'
+        ] }
+      ]
+    },
+    {
+      id: 'leather-cycle', cat: 'mechanics', title: 'Leather cycle',
+      sum: 'Hide to scraped hide (lime water), to dried hide (drying rack), to leather (tanning water). About 5 minutes.',
+      tags: ['leather', 'hide', 'lime water', 'tanning water', 'scraped hide', 'dried hide'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['hide', 'barrel', 'drying-rack'],
+      body: [
+        { h2: 'Steps' },
+        { list: [
+          'Collect hide by killing animals. It replaces vanilla leather and cannot be used in crafting.',
+          'Soak it in a barrel full of lime water for 1 minute to get scraped hide. Lime water comes from soaking a pebble in a full barrel of water for 1 minute.',
+          'Dry the scraped hide on a drying rack to get dried hide.',
+          'Soak the dried hide in a barrel full of tanning water for 2 minutes to get leather. Tanning water comes from soaking plant fibers in a full barrel of water for 1 minute.'
+        ] },
+        { note: 'The whole process takes up to 5 minutes from hide to leather.', kind: 'info' }
+      ]
+    },
+    {
+      id: 'drying', cat: 'mechanics', title: 'Drying',
+      sum: 'Items dried on a drying rack in 30 seconds to 1 minute.',
+      tags: ['drying rack', 'drying table', 'drying', 'paper', 'thatch', 'clay', 'mud'],
+      ver: CUR, src: ['guide', 'cf', 'users'], st: 'ok', rel: ['drying-rack', 'leather-cycle'],
+      body: [
+        { p: 'See [[drying-rack|Drying rack]] for the full list of dryable items.' },
+        { list: [
+          { t: 'The drying table was renamed to drying rack in drop 2.2.', st: 'ok' },
+          { t: 'Drying takes between 30 seconds and 1 minute.', st: 'ok' },
+          
+        ] }
+      ]
+    },
+    {
+      id: 'soaking', cat: 'mechanics', title: 'Soaking',
+      sum: 'Items dropped in water can react: francium explodes, dirt becomes mud with a water bottle.',
+      tags: ['soaking', 'water', 'mud', 'dirt', 'francium', 'bottle'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['francium-items', 'drying-rack'],
+      body: [{ kv: [
+        ['Francium', 'Highly reactive: explodes like TNT when it touches water.', 'ok'],
+        ['Dirt', 'Becomes mud when a water bottle is dropped on it. The bottle returns empty.', 'ok'],
+        ['Mud', 'Dries into clay at a [[drying-rack|drying rack]].', 'ok']
+      ] }]
+    },
+    {
+      id: 'electrics', cat: 'mechanics', title: 'Electrics',
+      sum: 'Redstone components renamed with realistic names: rose gold wire, battery, gates and switches.',
+      tags: ['electrics', 'redstone', 'wire', 'battery', 'comparator', 'repeater', 'lever', 'observer', 'rose gold', 'lithium', 'aluminum'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['ores-metals', 'silver', 'alloys'],
+      body: [
+        { p: 'Almost every redstone component now has a realistic name and texture. The main resources are rose gold ingots, lithium ingots, aluminum ingots, foils and silver rods.' },
+        { h2: 'Components' },
+        { kv: [
+          ['Rose gold wire', 'Redstone', 'ok'],
+          ['Battery', 'Redstone block', 'ok'],
+          ['Comparating gate', 'Comparator', 'ok'],
+          ['Advanced comparating gate', 'Observer', 'ok'],
+          ['Delay gate', 'Repeater', 'ok'],
+          ['Switch', 'Lever', 'ok'],
+          ['Electric rod', 'Redstone torch', 'ok']
+        ] },
+      ]
+    },
+    {
+      id: 'world-rules', cat: 'mechanics', title: 'World Rules',
+      sum: 'Lock Mode, Locked Inventory, Dynamic Light, Tree chopping and Torches Go Out, adjustable from the Survival Guide.',
+      tags: ['rules', 'world rules', 'lock mode', 'locked inventory', 'admin', 'dynamic light', 'capitator', 'tree chopping', 'torches go out'],
+      ver: CUR, src: ['guide', 'cf', 'dev'], st: 'ok', rel: ['survival-guide', 'beginners-guide', 'torches'],
+      body: [
+        { h2: 'Opening the menu' },
+        { p: 'Survival Guide → World Rules. Whether you can edit the rules depends on the Lock Mode: if it is set to Admins Only and you are not an admin, or it is set to Nobody, you are sent back to the main page.' },
+        { h2: 'Available rules' },
+        { kv: [
+          ['Lock Mode', 'Defines who can change the rules. “Everyone”: any player. “Admins only”: only players with the tag `admin` (recommended for servers and realms). “Nobody”: permanently locked, nearly irreversible. Changing to either restricted mode shows a warning first.', 'ok'],
+          ['Locked Inventory', 'Defines whether the player inventory is locked, leaving only the hotbar unlocked. Default: on.', 'ok'],
+          ['Dynamic Light', 'Turns the dynamic light system on or off (for example a torch in the offhand lighting the way). See [[torches|Torches]].', 'ok'],
+          ['Tree chopping and capitator', 'Turns tree chopping and the capitator on or off.', 'ok'],
+          ['Torches Go Out', 'Defines whether torches go out over time and need relighting.', 'ok']
+        ] },
+        { h2: 'How to disable the locked inventory' },
+        { p: 'Survival Guide → World Rules → turn off Locked Inventory (ignore the lock warning unless you want to change the lock).' },
+        { h2: 'Becoming an admin' },
+        { p: 'Admins are players with the `admin` tag. In regular Minecraft, a player with command access can add it with the `/tag` command.' }
+      ]
+    },
+    {
+      id: 'wildlife-systems', cat: 'bestiary', title: 'Animal behavior and systems',
+      sum: 'Fleeing, defense, sleep cycle, breeding, skinning, stuffing and carrying small animals.',
+      tags: ['animals', 'behavior', 'skinning', 'stuffing', 'carry', 'sleep', 'breeding', 'gender', 'wildlife'],
+      ver: 'Aurorian Animals V1', src: ['animals', 'cf'], st: 'ok', img: IMG.fauna, rel: ['wild-duck', 'turkey', 'pheasant', 'peacock', 'guineafowl', 'junglefowl', 'chicken'],
+      body: [
+        { h2: 'Behavior' },
+        { list: [
+          'Passive animals flee.',
+          'Defensive animals attack or warn when they feel endangered.',
+          'Aggressive animals attack if the prey is too close.',
+          'There is a sleeping cycle, natural breeding and genders.'
+        ] },
+        { h2: 'Corpses, skinning and stuffing' },
+        { list: [
+          'When it dies, the animal becomes a corpse.',
+          'The corpse can be skinned by interacting with a sharp object. Skinning is needed for the full loot; otherwise it becomes a pile of bones that only drops bone.',
+          'The corpse can be stuffed by interacting with planks.'
+        ] },
+        { h2: 'Carrying' },
+        { p: 'Players can carry small animals (only the custom ones): sneak and get close. According to the official page, the carrying system uses the `player.json` file; it can be deactivated without harming the addon.' },
+      ]
+    },
+    {
+      id: 'wild-duck', cat: 'bestiary', title: 'Wild Duck',
+      sum: 'Passive bird of plains, forests and rivers.',
+      tags: ['duck', 'mallard', 'bird'],
+      ver: 'Aurorian Animals V1', src: ['animals', 'cf'], st: 'ok', rel: ['wildlife-systems', 'v2-1'],
+      body: [{ kv: [
+        ['Health', '5–8 (2.5–4 hearts)'], ['Behavior', 'Passive'], ['Attack damage', '0'],
+        ['Tameable', 'Yes (only baby)'], ['Feed items', 'Bread; seeds'],
+        ['Found in', 'Plains, forests, rivers'], ['Variants', 'Mallard'],
+        ['Added in', 'AurorianCraft drop 2.1']
+      ] }]
+    },
+    {
+      id: 'turkey', cat: 'bestiary', title: 'Turkey',
+      sum: 'Semi-defensive bird; males have a small chance to fight back.',
+      tags: ['turkey', 'bird'],
+      ver: 'Aurorian Animals V1', src: ['animals', 'cf'], st: 'ok', rel: ['wildlife-systems', 'v2-3'],
+      body: [{ kv: [
+        ['Health', '13–16 (6.5–8 hearts)'], ['Behavior', 'Semi-defensive (males have a small chance of attacking back)'],
+        ['Attack damage', '1–3 (0.5–1.5 hearts)'], ['Tameable', 'Yes (only baby)'], ['Feed items', 'Fruits; seeds'],
+        ['Found in', 'Plains, oak forests, birch forests, dark oak forests'], ['Variants', 'Rio-Grande; Albino'],
+        ['Added in', 'Drop 2.3']
+      ] }]
+    },
+    {
+      id: 'pheasant', cat: 'bestiary', title: 'Pheasant',
+      sum: 'Passive bird of taigas and meadows.',
+      tags: ['pheasant', 'bird'],
+      ver: 'Aurorian Animals V1', src: ['animals', 'cf'], st: 'ok', rel: ['wildlife-systems', 'v2-3'],
+      body: [{ kv: [
+        ['Health', '9–12 (4.5–6 hearts)'], ['Behavior', 'Passive'], ['Attack damage', '0'],
+        ['Tameable', 'Yes (only baby)'], ['Feed items', 'Fruits; seeds'],
+        ['Found in', 'Taigas, meadows'], ['Variants', 'Ring-necked'], ['Added in', 'Drop 2.3']
+      ] }]
+    },
+    {
+      id: 'peacock', cat: 'bestiary', title: 'Peacock',
+      sum: 'Passive bird of the jungles.',
+      tags: ['peacock', 'bird'],
+      ver: 'Aurorian Animals V1', src: ['animals', 'cf'], st: 'ok', rel: ['wildlife-systems', 'v2-3'],
+      body: [{ kv: [
+        ['Health', '7–10 (3.5–5 hearts)'], ['Behavior', 'Passive'], ['Attack damage', '0'],
+        ['Tameable', 'Yes (only baby)'], ['Feed items', 'Fruits; seeds'],
+        ['Found in', 'Jungles'], ['Variants', 'Blue'], ['Added in', 'Drop 2.3']
+      ] }]
+    },
+    {
+      id: 'guineafowl', cat: 'bestiary', title: 'Guineafowl',
+      sum: 'Passive bird of plains and savannas, with three variants.',
+      tags: ['guineafowl', 'bird'],
+      ver: 'Aurorian Animals V1', src: ['animals', 'cf'], st: 'ok', rel: ['wildlife-systems', 'v2-3'],
+      body: [{ kv: [
+        ['Health', '5–8 (2.5–4 hearts)'], ['Behavior', 'Passive'], ['Attack damage', '0'],
+        ['Tameable', 'Yes (only baby)'], ['Feed items', 'Fruits; seeds'],
+        ['Found in', 'Plains, savannas'], ['Variants', 'Helmeted; Crested; Plumed'], ['Added in', 'Drop 2.3']
+      ] }]
+    },
+    {
+      id: 'junglefowl', cat: 'bestiary', title: 'Junglefowl',
+      sum: 'Passive jungle bird that can be domesticated into a chicken.',
+      tags: ['junglefowl', 'rooster', 'bird', 'domesticate'],
+      ver: 'Aurorian Animals V1', src: ['animals', 'cf'], st: 'ok', rel: ['chicken', 'wildlife-systems', 'v2-3'],
+      body: [
+        { kv: [
+          ['Health', '5–8 (2.5–4 hearts)'], ['Behavior', 'Passive'], ['Attack damage', '0'],
+          ['Tameable', 'Yes (only baby)'], ['Feed items', 'Seeds'], ['Found in', 'Jungles'],
+          ['Variants', 'Red'], ['Can be domesticated into', '[[chicken|Chicken]]'], ['Added in', 'Drop 2.3']
+        ] },
+        { note: 'Known issue from drop 2.3: the death animation of the junglefowl and the chicken is bugged.', kind: 'warn' }
+      ]
+    },
+    {
+      id: 'chicken', cat: 'bestiary', title: 'Chicken',
+      sum: 'Passive domesticated bird with a faster breeding cooldown.',
+      tags: ['chicken', 'bird', 'egg'],
+      ver: 'Aurorian Animals V1', src: ['animals', 'cf'], st: 'ok', rel: ['junglefowl', 'wildlife-systems', 'v2-3'],
+      body: [
+        { kv: [
+          ['Health', '5–8 (2.5–4 hearts)'], ['Behavior', 'Passive'], ['Attack damage', '0'],
+          ['Tameable', 'Yes (only baby)'], ['Feed items', 'Seeds'],
+          ['Special', 'Faster breeding cooldown'], ['Added in', 'Drop 2.3']
+        ] },
+        { note: 'Known issue from drop 2.3: the death animation of the chicken and the junglefowl is bugged.', kind: 'warn' }
+      ]
+    },
+    {
+      id: 'forge', cat: 'structures', title: 'Forge',
+      sum: 'The station where every metal tool and armor piece is made: you place a mold, pour in a molten ingot, strike it with a hammer and finish it with a handle.',
+      tags: ['forge', 'molten metal', 'mold', 'hammer', 'anvil', 'handle', 'silver rod', 'wrought', 'smithing'],
+      ver: CUR, src: ['guide', 'cf'], st: 'ok', rel: ['recipe-forge', 'recipe-forge-items', 'vessel', 'metallurgy', 'pit-kiln', 'pottery', 'silver'],
+      body: [
+        { h2: 'What the forge is' },
+        { p: 'The forge is the heart of the metal progression. Once you leave the stone age, **every metal tool and armor piece is shaped here**, not on a crafting table. It does not smelt anything by itself: it receives metal that was already melted in a [[vessel|vessel]] and gives it a shape using a [[pottery|clay mold]]. Think of it as the last step of a chain: raw metal → vessel → pit kiln → molten ingot → forge → finished item.' },
+        { h2: 'Before you can build it' },
+        { p: 'The forge costs **7 copper ingots**, and ingots are not mined: they come from molten metal. That means you must already have gone through these systems:' },
+        { list: [
+          'A [[pit-kiln|pit kiln]] (full straw layer + 2 logs) and any fire source to light it. See [[fire|Fire sources]].',
+          'Clay, modelled into an unfired [[vessel|vessel]] and fired in the pit kiln. See [[pottery|Pottery]].',
+          '4 raw copper for each vessel. Seven vessels means **28 raw copper** in total.',
+          'Each pit kiln melts one batch in 5 minutes, so the fastest route is to make 7 vessels and fire them in 7 different pit kilns at the same time.'
+        ] },
+        { h2: 'Crafting the forge' },
+        { p: 'First, turn every molten copper into an ingot by placing it in the crafting slot. Then place the 7 copper ingots in the crafting grid using the **same shape as the vanilla anvil recipe**, but with ingots where the anvil uses blocks: 3 ingots on the top row, 1 in the middle of the center row and 3 on the bottom row. No iron blocks are needed.' },
+        { h2: 'How to use the forge, step by step' },
+        { p: 'Each metal item follows the same four stages. Do them in this order:' },
+        { list: [
+          '**1. Place a fired mold.** The mold decides which item you will get (pickaxe head, axe head, sword, a piece of armor and so on). Molds are made by modelling a clay ball and choosing the mold on the modelling screen, then firing it in a pit kiln or a furnace. An unfired mold does not work.',
+          '**2. Place a molten ingot.** Molten ingots are obtained by firing a vessel filled with raw metal in a pit kiln. The metal you pour decides the material of the item: copper gives a copper item, iron gives an iron item, and an alloy such as bronze or steel gives a bronze or steel item.',
+          '**3. Wrought the item with a hammer.** Interact with the forge holding any hammer. Even a stone hammer works. Every strike costs hammer durability, so keep a spare hammer if you plan to make many pieces.',
+          '**4. Add the handle.** For most metal tools the handle is a stick. **Bronze and steel tools need a silver rod instead** (the rod is made from silver). Armor pieces do not use a handle: they require an ingot of the same metal as the molten one, for example an iron chestplate needs an iron ingot.'
+        ] },
+        { p: 'The same process makes every metal item, including the [[saw|saw]], the tool that cuts wood into lumber.' },
+        { h2: 'Which handle to use' },
+        { kv: [
+          ['Stick', 'Copper, iron and the other regular metal tools.'],
+          ['Silver rod', 'Bronze and steel tools. Silver is an ore of its own, so you need to find it before you can forge these tiers. See [[silver|Silver]].'],
+          ['Same ingot', 'Armor pieces: the finished armor needs an ingot of the same metal as the molten metal on the forge.']
+        ] },
+        { h2: 'Common mistakes' },
+        { list: [
+          'Trying to forge with a mold that is still unfired: fire it in a pit kiln or furnace first.',
+          'Putting the wrong metal in the vessel. A wrong alloy proportion gives molten scraps, which are useless. See [[alloys|Alloys]].',
+          'Forgetting the handle: the head alone is not a tool.',
+          'Using a stick on bronze or steel: those two tiers need the silver rod.'
+        ] },
+        { note: 'A bug that erased the molten metal stack when you interacted with it on the forge was fixed in the drop 2.4 hotfix. Update if you still see it.', kind: 'info' },
+        { h2: 'Progression stage' },
+        { p: '[[progression-guide/stage-7|Stage 7 — Copper and the forge]]. Complete walkthrough of the chain in [[metallurgy|Metallurgy]] and [[recipe-forge-items|Smithing process]].' }
+      ]
+    },
+    {
+      id: 'vessel', cat: 'structures', title: 'Vessel',
+      sum: 'The clay container that turns raw metals into molten metal. It decides whether you get a pure metal, an alloy or useless scraps.',
+      tags: ['vessel', 'cauldron', 'foundry cauldron', 'molten', 'alloy', 'recycle', 'scraps', 'pit kiln'],
+      ver: CUR, src: ['guide', 'cf'], st: 'ok', rel: ['alloys', 'pit-kiln', 'forge', 'metallurgy', 'pottery', 'recipe-forge-items'],
+      body: [
+        { h2: 'What it is' },
+        { p: 'The vessel is a pottery piece. You model it from clay, fire it, fill it with raw metals and fire it again in a [[pit-kiln|pit kiln]]. It replaced the foundry cauldron in drop 2.4 and is currently the **only way to get molten metal**, which the [[forge|forge]] needs for everything.' },
+        { h2: 'Getting a vessel' },
+        { list: [
+          'Hold clay while sneaking and hold use (like drawing a bow) to open the modelling screen.',
+          'Select the vessel to receive an unfired vessel.',
+          'Fire it in a pit kiln or furnace. Only the fired vessel can hold metal.'
+        ] },
+        { h2: 'The vessel screen' },
+        { p: 'Hold use (like drawing a bow) with the vessel in hand to open its screen. It has four slots and an Add Item button.' },
+        { kv: [
+          ['Four slots', 'Each slot takes the **raw** version of a metal (raw copper, raw iron...). Not ingots.'],
+          ['Pure metal', 'All four slots with the same metal gives the molten version of that metal.'],
+          ['Alloy', 'Mixed metals give an alloy only if the proportion is exact. See the table below.'],
+          ['Molten scraps', 'If a slot is empty, or the proportion is wrong, you get molten scraps, which are useless. The metal is wasted.']
+        ] },
+        { h2: 'Alloy proportions' },
+        { kv: [
+          ['Bronze', '3 copper + 1 tin (75% / 25%)'],
+          ['Brass', '2 copper + 2 zinc (50% / 50%)'],
+          ['Rose gold', '2 gold + 1 copper + 1 silver (50% / 25% / 25%)'],
+          ['Steel', '2 nickel + 1 iron + 1 silver (50% / 25% / 25%)']
+        ] },
+        { h2: 'Melting' },
+        { list: [
+          'Put the filled vessel in a pit kiln while it is unlit, then light it with any fire source.',
+          'After 5 minutes the vessel holds molten metal. For now the vessel can only be melted in pit kilns.',
+          'To get ingots, put the molten metal in the crafting slot. To forge an item, use it at the [[forge|forge]].',
+          'Because one kiln takes 5 minutes, use several kilns at once when you need many ingots.'
+        ] },
+        { h2: 'Recycling tools and armor (Add Item)' },
+        { p: 'The Add Item button melts a whole tool or armor piece, which lets you recycle old gear. It has strict rules:' },
+        { list: [
+          'The item fills **all four slots**, so it can only be added if every slot is empty. This prevents you from losing metal.',
+          'Durability, enchantments and names cannot be kept.',
+          'Because of that, the item **cannot be taken back out** of the vessel once added. Be sure before you press it.'
+        ] },
+        { h2: 'Progression stage' },
+        { p: '[[progression-guide/stage-6|Stage 6 — Vessel and molten metal]].' }
+      ]
+    },
+    {
+      id: 'blast-furnace', cat: 'structures', title: 'Blast furnace',
+      sum: 'Vanilla station made with 5 ingots, a furnace and 3 brick blocks.',
+      tags: ['blast furnace'],
+      ver: CUR, src: ['guide', 'dev', 'users'], st: 'ok', rel: ['recipe-blast-furnace', 'furnaces', 'metallurgy'],
+      body: [{ kv: [
+        ['How to obtain', '5 ingots, a regular furnace and 3 brick blocks. See [[recipe-blast-furnace|Blast furnace recipe]].', 'ok'],
+        
+      ] }]
+    },
+    {
+      id: 'furnaces', cat: 'structures', title: 'Furnaces',
+      sum: 'Furnaces now require bricks; the blast furnace needs ingots and brick blocks.',
+      tags: ['furnace', 'bricks', 'smoker', 'dropper', 'dispenser', 'blast furnace'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['recipe-blast-furnace', 'pottery'],
+      body: [{ kv: [
+        ['Regular furnace', '8 bricks. Bricks are modelled from clay and fired like any pottery piece.', 'ok'],
+        ['Blast furnace', '5 ingots, 1 regular furnace and 3 brick blocks.', 'ok'],
+        ['Smoker', 'Crafting unchanged.', 'ok'],
+        ['Droppers and dispensers', 'Crafting unchanged.', 'ok']
+      ] }]
+    },
+    {
+      id: 'pit-kiln', cat: 'structures', title: 'Pit kiln',
+      sum: 'The first kiln: built from a full straw layer and two logs, it needs no fuel and fires pottery, melts vessels and cooks logs and sand.',
+      tags: ['pit kiln', 'pottery', 'kiln', 'charcoal', 'glass', 'straw', 'vessel'],
+      ver: CUR, src: ['guide', 'cf'], st: 'ok', rel: ['pottery', 'vessel', 'straw', 'fire', 'forge', 'metallurgy'],
+      body: [
+        { h2: 'What it does' },
+        { p: 'The pit kiln is a temporary kiln you build on the ground. It is the key to the whole pottery and metal chain: fired clay pieces, molten metal and glass all come from it.' },
+        { h2: 'Building it' },
+        { list: [
+          'Collect straw by cutting grassy blocks with a sword or knife. See [[straw|Straw]].',
+          'Place straw on the ground to make a straw layer. A layer holds up to three straws; you need it **full**.',
+          'Add two logs on top of the full straw layer. The pit kiln is formed.',
+          'It must sit on a solid floor and have **at least 3 sides covered**, otherwise it collapses.'
+        ] },
+        { h2: 'Using it' },
+        { list: [
+          'While it is **unlit**, interact with it to open its inventory and add the item to cook.',
+          'Light it with any fire source ([[fire|firebow, matchsticks or flint and steel]]). It needs no fuel.',
+          'Wait **5 minutes**. When it finishes, the kiln drops the cooked item automatically.',
+          'If an item cannot be cooked in it, it comes out unchanged.'
+        ] },
+        { note: 'You cannot add items once it is lit. Load everything first, then light it.', kind: 'info' },
+        { h2: 'What it cooks' },
+        { kv: [
+          ['Logs', 'Become charcoal.'],
+          ['Sand', 'Becomes glass.'],
+          ['Unfired pottery', 'Becomes fired pottery: bricks, jars, molds and vessels. See [[pottery|Pottery]].'],
+          ['Filled vessel', 'Becomes molten metal. See [[vessel|Vessel]].']
+        ] },
+        { h2: 'Tips' },
+        { list: [
+          'Metal is slow: each kiln takes 5 minutes, so build several kilns when you need many molten ingots (the forge needs 7).',
+          'Furnaces can also fire pottery, but only a pit kiln can melt a vessel for now.'
+        ] },
+        { h2: 'Progression stage' },
+        { p: '[[progression-guide/stage-5|Stage 5 — Pit kiln and pottery]].' }
+      ]
+    },
+    {
+      id: 'bonfire', cat: 'structures', title: 'Bonfire',
+      sum: 'Made with 4 sticks; gives light, warmth, cooking and scares predators. Needs fuel.',
+      tags: ['bonfire', 'fire', 'cooking', 'fuel', 'warmth'],
+      ver: CUR, src: ['guide', 'cf'], st: 'ok', rel: ['recipe-bonfire', 'fire', 'sulphur'],
+      body: [
+        { h2: 'Overview' },
+        { p: 'Bonfires are demanding but essential for surviving: they cook meat, emit light, give warmth and scare predators. Added in drop 2.4.' },
+        { h2: 'Fuel' },
+        { p: 'A bonfire does not burn forever. Its size grows and shrinks with the remaining fuel. Coal, sulphur, wood items and some small flammable items work as fuel.' },
+        { h2: 'Cooking' },
+        { p: 'Interact to open the bonfire inventory. It works like a furnace: put the meat in the first slot and the result appears in the second.' }
+      ]
+    },
+    {
+      id: 'drying-rack', cat: 'structures', title: 'Drying rack',
+      sum: 'Utility bench that dries items in 30 seconds to 1 minute.',
+      tags: ['drying rack', 'drying table', 'paper', 'straw', 'thatch', 'clay', 'mud'],
+      ver: CUR, src: ['guide', 'cf', 'users'], st: 'ok', rel: ['drying', 'leather-cycle', 'lumber'],
+      body: [
+        { kv: [
+          ['Name', 'Renamed from drying table to drying rack in drop 2.2. It now needs lumber to craft.', 'ok'],
+          ['Time', '30 seconds to 1 minute.', 'ok']
+        ] },
+        { h2: 'Dryable items' },
+        { list: [
+          'Papyrus → Paper',
+          'Wheat or plant fiber → Straw',
+          'Plant fiber block → Thatch',
+          'Scraped hide → Dried hide',
+          'Mud → Clay'
+        ] }
+      ]
+    },
+    {
+      id: 'stump', cat: 'structures', title: 'Stump',
+      sum: 'Block made with an axe on a stripped log; chops logs into lumber and stone into pebbles.',
+      tags: ['stump', 'lumber', 'pebble', 'axe', 'pickaxe'],
+      ver: CUR, src: ['guide', 'dev'], st: 'ok', rel: ['saw', 'recipe-stump', 'lumber', 'wood-processing'],
+      body: [{ kv: [
+        ['How to make', 'Interact with an axe on a stripped log.', 'ok'],
+        ['Chop wood', 'Interact with the log (or planks) and then with an axe to get lumber.', 'ok'],
+        ['Chop stone', 'Chops stone blocks into pebbles with pickaxes.', 'ok'],
+        
+      ] }]
+    },
+    {
+      id: 'barrel', cat: 'structures', title: 'Barrel',
+      sum: 'A liquid container that stores up to 3 buckets, mixes liquids and macerates items to make lime water, tanning water, scraped hide and leather.',
+      tags: ['barrel', 'maceration', 'liquid', 'lime water', 'tanning water', 'mixing', 'diluted', 'toxic', 'bucket'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['leather-cycle', 'hide', 'buckets', 'lumber', 'drying-rack'],
+      body: [
+        { h2: 'What it does' },
+        { p: 'The barrel stores liquids, mixes them and changes items depending on the liquid inside. It holds up to **3 buckets** of liquid. It needs lumber to craft. Fill and empty it with [[buckets|buckets]].' },
+        { h2: 'Mixing liquids' },
+        { p: 'Every liquid in the addon can be mixed with another. Adding a milk bucket to a barrel with water, for example, makes **diluted liquid**. The most common results are diluted and toxic liquids, which are mistakes and useless, so do not mix at random.' },
+        { p: 'A useful mix: adding water to lime water or tanning water raises their level, so a single batch lasts longer.' },
+        { h2: 'Maceration' },
+        { p: 'Maceration means soaking an item in a liquid and letting it react over time. Interact with the item on the barrel, wait, and the barrel gives a new item. Rules:' },
+        { list: [
+          'A barrel holds **one stack of a single item** per maceration.',
+          'When it finishes, the liquid, its level and the item can all change.',
+          'The item must be in the **correct liquid**, or nothing happens.'
+        ] },
+        { h2: 'List of macerations' },
+        { kv: [
+          ['Pebble → lime water', 'Pebble in a barrel full of water, 1 minute. The pebble is consumed and the liquid level does not change.'],
+          ['Plant fiber → tanning water', 'Fiber in a barrel full of water, 1 minute. The fiber is consumed and the liquid level does not change.'],
+          ['Hide → scraped hide', 'Hide in lime water, 1 minute. It absorbs liquid levels depending on the stack size.'],
+          ['Dried hide → leather', 'Dried hide in tanning water, 2 minutes. It absorbs liquid levels depending on the stack size.']
+        ] },
+        { h2: 'Leather in short' },
+        { p: 'Water → lime water (pebble) → scraped hide → dry on a [[drying-rack|drying rack]] → tanning water (fiber) → leather. Up to 5 minutes in total. See [[leather-cycle|Leather cycle]].' }
+      ]
+    },
+    {
+      id: 'sieve', cat: 'structures', title: 'Sieve',
+      sum: 'Utility bench that turns ground blocks into loot, including nuggets; it can skip steps in the metal progression.',
+      tags: ['sieve', 'loot', 'nuggets', 'gravel', 'sand', 'dirt'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['ores-metals', 'progression-guide'],
+      body: [
+        { kv: [
+          ['Function', 'Produces items from ground blocks, converting useless ones into loot.', 'ok'],
+          ['Loot', 'Each ground block has its own loot table, with junk and precious nuggets.', 'ok'],
+          ['Cost', 'Cheap to craft.', 'ok'],
+          ['Why use it', 'It can skip steps in the metal progression.', 'ok']
+        ] },
+      ]
+    },
+    {
+      id: 'mortar', cat: 'structures', title: 'Mortar',
+      sum: 'Crafting station for smashing items: dyes, gunpowder, bone meal, sugar and dust.',
+      tags: ['mortar', 'dust', 'dye', 'gunpowder', 'bone meal', 'sugar', 'saltpeter'],
+      ver: CUR, src: ['guide'], st: 'ok', rel: ['saltpeter', 'ores-metals'],
+      body: [
+        { kv: [
+          ['Crafts', 'Dyes, gunpowder, bone meal, sugar and dust.', 'ok'],
+          ['Saltpeter', 'Smashed it gives bone meal; mixed with coal it makes gunpowder.', 'ok'],
+          ['Dust', 'Made by crushing dirt, sand or stone. It applies blindness for a few seconds to nearby entities. It can also craft sand and dirt.', 'ok']
+        ] }
+      ]
+    },
+    {
+      id: 'installation', cat: 'installation', title: 'Installation and compatibility',
+      sum: 'Minecraft version, required experiment, files and how to install.',
+      tags: ['install', 'installation', 'version', 'compatibility', 'experiment', 'upcoming creator', 'requirements', 'download', 'player.json'],
+      ver: VER, src: ['cf', 'files', 'mcpedl', 'dev', 'guide'], st: 'ok', rel: ['compatibility', 'known-issues', 'beginners-guide'],
+      body: [
+        { h2: 'Requirements' },
+        { kv: [
+          ['Reference version', 'Drop: 2.5 (Oct 2026)', 'ok'],
+          ['Listed Minecraft version', '1.26.50', 'ok'],
+          ['Minimum version', 'Minecraft Bedrock 1.26.50 or higher', 'ok'],
+          ['Experiment', 'Upcoming Creator Experiment is necessary to play', 'ok'],
+          ['File size', '8.6 MB', 'ok'],
+          ['player.json', 'Used only for the animal carrying system; it can be deactivated with no problem.', 'ok'],
+          ['License', 'All Rights Reserved', 'ok']
+        ] },
+        { h2: 'How to install' },
+        { list: [
+          { t: 'Download the file from the official CurseForge or MCPEDL page. The in-game guide says these are the only reliable sources; any other source may not give the best experience.', st: 'ok' },
+          { t: 'Open the file in Minecraft Bedrock (it imports the pack) or follow the MCPEDL guide for your device: Android, iOS or Windows 10.', st: 'ok' },
+          { t: 'Create a world and enable the Upcoming Creator experiment before playing.', st: 'ok' },
+          
+        ] },
+        { note: 'These installation steps are the general Minecraft Bedrock ones. The addon page does not provide its own step-by-step.', kind: 'info' },
+        { h2: 'Official links' },
+        { list: [
+          '[CurseForge — official page](https://www.curseforge.com/minecraft-bedrock/addons/auroriancraft-insane-survival)',
+          '[MCPEDL — addon page](https://mcpedl.com/auroriancraft-insane-survival/)'
+        ] }
+      ]
+    },
+    {
+      id: 'compatibility', cat: 'installation', title: 'Compatibility with other addons',
+      sum: 'The author does not promise compatibility with unknown addons.',
+      tags: ['compatibility', 'epic knights', 'other addons', 'conflict', 'diamond', 'leather'],
+      ver: VER, src: ['guide', 'dev'], st: 'tbc', rel: ['installation', 'known-issues', 'steel', 'hide'],
+      body: [
+        { list: [
+          { t: 'Steel replaces the vanilla diamond tier for tools and armor, but the diamond item itself is not removed, and the guide says it stays compatible with any addon.', st: 'ok' },
+          { t: 'Hide replaces vanilla leather, and other addons will use it for leather items.', st: 'ok' },
+          { t: 'Epic Knights: the author answered that he is not sure it is compatible.', st: 'ok' },
+          { t: 'The author said he will not make the addon compatible with others he does not know, and that the steel ID cannot be changed because it would wipe the existing steel.', st: 'ok' },
+          
+        ] }
+      ]
+    },
+    {
+      id: 'known-issues', cat: 'installation', title: 'Known issues and current limitations',
+      sum: 'Bugs from the changelog, player reports and features the guide says are not finished yet.',
+      tags: ['bug', 'problem', 'error', 'known issues', 'limitations', 'not yet'],
+      ver: VER, src: ['guide', 'cf', 'dev', 'users'], st: 'tbc', rel: ['installation', 'metallurgy', 'drying', 'lumber'],
+      body: [
+        { h2: 'Known bugs' },
+        { list: [
+          'The death animation of the junglefowl and the chicken is bugged (known issue in drop 2.3).'
+        ] },
+        { h2: 'Current limitations (from the guide)' },
+        { list: [
+          'Lumber does not apply to nether woods or bamboo planks, and regular signs do not need it yet.',
+          'The wooden bucket cannot hold lava or fish.',
+          'The vessel can only be melted in pit kilns.',
+          'Recycling a tool or armor in a vessel loses its durability, enchantments and name, and the item cannot be retrieved.',
+          'Brass and francium have no use yet; they are reserved for future machines and radioactive power.',
+          'Flint and steel can only be crafted at later steps.'
+        ] }
+      ]
+    },
+    {
+      id: 'v2-5', cat: 'updates', title: 'Drop 2.5',
+      sum: 'Lumber, saw, barrel, wooden buckets and carpentry; Axes now have tree capitator.',
+      tags: ['2.5', 'lumber', 'saw', 'barrel', 'pottery', 'bucket', 'wooden', 'carpentry'],
+      ver: '2.5', src: ['cf'], st: 'ok', rel: ['v2-4-1', 'lumber', 'saw', 'buckets', 'barrel', 'stump'],
+      hl: ['Improved stump system.', 'Axes now have tree capitator functionality with realistic tree chopping.', 'Many new carpentry items such as lumber, wooden buckets and barrels', 'new tool: saw.'],
+      body: [
+        { kv: [['Version', '2.5', 'ok'], ['Official source', '[Description on CurseForge](' + SRC.cf.u + ')', 'ok']] },
+        { h2: 'New' },
+        { list: ['Improved stump system.', 'Axes now have tree capitator functionality with realistic tree chopping.', 'Many new carpentry items such as lumber, wooden buckets and barrels', 'new tool: saw.'] },
+        { h2: 'Fixes' },
+        { list: [
+          'Tatch now crafts straw beds.'
+        ] },
+      ]
+    },
+    {
+      id: 'v2-4-1', cat: 'updates', title: 'Hotfix 2.4.1',
+      sum: 'Latest documented version (December 16, 2025).',
+      tags: ['2.4.1', 'hotfix', 'latest'],
+      ver: '2.4.1', date: 'Dec 16, 2025', src: ['files', 'cf'], st: 'ok', rel: ['v2-4'],
+      hl: ['“Hotfix: 2.4.1” file for Minecraft 1.21.111 (8.6 MB).', 'Fixes the straw layer loot bug and the molten metal bug (see drop 2.4).'],
+      body: [
+        { kv: [['Version', '2.4.1', 'ok'], ['Date', 'Dec 16, 2025', 'ok'], ['Minecraft', '1.21.111', 'ok'], ['Official source', '[Files on CurseForge](' + SRC.files.u + ')', 'ok']] },
+        { h2: 'Fixes' },
+        { list: [
+          
+          
+        ] },
+      ]
+    },
+    {
+      id: 'v2-4', cat: 'updates', title: 'Drop 2.4',
+      sum: 'Fire, pottery, phosphorus and sulphur; vessel in place of the cauldron.',
+      tags: ['2.4', 'bonfire', 'firebow', 'torch', 'pottery', 'phosphorus', 'sulphur', 'vessel'],
+      ver: '2.4', src: ['cf'], st: 'ok', rel: ['v2-4-1', 'fire', 'pottery', 'vessel'],
+      hl: ['Bonfires, firebows and torches.', 'Pit kilns and pottery system.', 'Phosphorus and sulphur ores and craftings.'],
+      body: [
+        { kv: [['Version', '2.4', 'ok'], ['Official source', '[Description on CurseForge](' + SRC.cf.u + ')', 'ok']] },
+        { h2: 'New' },
+        { list: ['Bonfires.', 'Firebows.', 'Torches.', 'Pit kilns.', 'Pottery items and system.', 'Phosphorus and sulphur ores and craftings.'] },
+        { h2: 'Changes' },
+        { list: ['Many script functions moved from commands to API methods, which reduces lag and fixes issues that could occur for PC players.', 'The foundry cauldron was removed to make way for the vessel.'] },
+        { h2: 'Hotfix' },
+        { list: ['Fixed a bug where the loot obtained from the straw layers did not match the layer level.', 'Fixed a bug where interacting with a molten metal stack on a forge erased the stack.'] }
+      ]
+    },
+    {
+      id: 'v2-3', cat: 'updates', title: 'Drop 2.3',
+      sum: 'Six new birds and improvements to the Survival Guide.',
+      tags: ['2.3', 'turkey', 'pheasant', 'peacock', 'guineafowl', 'junglefowl', 'chicken'],
+      ver: '2.3', src: ['cf'], st: 'ok', rel: ['v2-4', 'wildlife-systems'],
+      hl: ['Six new birds: turkey, pheasant, peacock, guineafowl, junglefowl and chicken.', 'Go back button in each Survival Guide category.'],
+      body: [
+        { kv: [['Version', '2.3', 'ok'], ['Official source', '[Description on CurseForge](' + SRC.cf.u + ')', 'ok']] },
+        { h2: 'New' },
+        { list: ['Six new animals: turkey, pheasant, peacock, guineafowl, junglefowl and chicken.', '“Go back” button in each Survival Guide category.'] },
+        { h2: 'Fixes and improvements' },
+        { list: ['Many scripting bugs fixed.', 'Better text formatting in the Survival Guide.'] },
+        { h2: 'Known issues' },
+        { list: ['The death animation of the junglefowl and the chicken is bugged.'] }
+      ]
+    },
+    {
+      id: 'v2-2', cat: 'updates', title: 'Drop 2.2',
+      sum: 'Survival Guide, world rules, new fiber system and improved knapping.',
+      tags: ['2.2', 'survival guide', 'world rules', 'fibers', 'knapping', 'drying rack', 'hammers'],
+      ver: '2.2', src: ['cf'], st: 'ok', rel: ['v2-3', 'survival-guide', 'world-rules', 'fiber-gathering', 'knapping'],
+      hl: ['In-game Survival Guide.', 'World rules: Lock Mode and Locked Inventory.', 'New fiber system and improved knapping.'],
+      body: [
+        { kv: [['Version', '2.2', 'ok'], ['Official source', '[Description on CurseForge](' + SRC.cf.u + ')', 'ok']] },
+        { h2: 'New' },
+        { list: ['Survival Guide with detailed information.', 'World rules changeable in the Survival Guide: Lock Mode and Locked Inventory.', 'New fiber system: interact with a grass block, using an empty hand, while sneaking.', 'Improved knapping: interact with stone or flint on hard blocks, sneaking, and select the tool head.'] },
+        { h2: 'Mechanic changes' },
+        { list: ['The old method of getting fibers now drops straw, used for thatch and fuel.', 'Drying table renamed to drying rack.'] },
+        { h2: 'Improvements' },
+        { list: ['Addon scripting updated and improved for better performance.', 'Hammers, string and stone and flint tools retextured.'] }
+      ]
+    },
+    {
+      id: 'v2-1', cat: 'updates', title: 'Drop 2.1',
+      sum: 'Ducks, higher ore drops and durability adjustments.',
+      tags: ['2.1', 'ducks', 'ores', 'durability', 'cauldron', 'copper'],
+      ver: '2.1', src: ['cf'], st: 'ok', rel: ['v2-2', 'wild-duck', 'ores-metals'],
+      hl: ['Ducks added.', 'Higher drop rate for saltpeter, lithium, aluminum, silver and tin.'],
+      body: [
+        { kv: [['Version', '2.1', 'ok'], ['Official source', '[Description on CurseForge](' + SRC.cf.u + ')', 'ok']] },
+        { h2: 'New' },
+        { list: ['Ducks added.', 'The foundry cauldron can now be picked up (not if it has metals inside).', 'Compatibility with the ore breaking script.'] },
+        { h2: 'Mechanic changes' },
+        { list: ['Drop rates increased: saltpeter, lithium, aluminum, silver and tin.', 'The addon’s copper was removed because of regular Minecraft copper.', 'Durability reduced on lithium, aluminum, silver and tin gear, to sit close to regular copper.'] },
+        { h2: 'Fixes' },
+        { list: ['Improvements and bug fixes.', 'Hotfix: fixes a bug when breaking blocks.'] }
+      ]
+    },
+    {
+      id: 'about', cat: 'about', title: 'About this wiki, sources and credits',
+      sum: 'Reference version, sources, credits and important notices.',
+      tags: ['about', 'sources', 'method', 'notice', 'reference version', 'legend', 'credits', 'authors'],
+      ver: VER, src: ['guide', 'cf', 'mcpedl', 'animals'], st: 'ok', rel: ['beginners-guide', 'installation', 'survival-guide'],
+      body: [
+        { h2: 'What this wiki is' },
+        { p: 'The official wiki for the **[Fire] AurorianCraft: Realistic Survival Addon**, written and maintained by the addon author, VictaoSigma. The in-game guide book presents the addon as “Aurorian Progression”, the CurseForge page keeps the old address (insane-survival) and the description still says “AurorianCraft: Insane Survival”. It is not affiliated with Mojang.' },
+        { h2: 'Reference version' },
+        { p: 'Drop 2.5, published on Octuber, 2026, for Minecraft 1.26.50. Most of the content was synchronized with the current text of the in-game guide book, which does not state a version number; a newer addon version may exist.' },
+        { h2: 'Sources consulted' },
+        { list: [
+          'The addon’s in-game Survival Guide (guide book): progression, other systems, ores and world rules. It is the main source and takes priority over older statements.',
+          '[CurseForge — official page](' + SRC.cf.u + '): description, changelogs, requirements, gallery and files.',
+          '[MCPEDL — addon page](' + SRC.mcpedl.u + '): the author’s replies in the comments.',
+          '[CurseForge — Aurorian Animals](' + SRC.animals.u + '): animal data.'
+        ] },
+        { note: 'When an older comment from the author conflicts with the current guide book (for example the blast furnace recipe or the stump), this wiki follows the guide and keeps the older statement as a note.', kind: 'info' },
+        { h2: 'Credits' },
+        { list: [
+          'VictaoSigma',
+          'a.j.r. uribe (Script Labs)',
+          'Templates by Maxis, waveplays and leGend'
+        ] },
+        { h2: 'Where to download' },
+        { p: 'The guide book states that the only reliable sources are MCPEDL and CurseForge. Any other source is unreliable and may not provide the best experience.' },
+        { h2: 'Images' },
+        { p: 'Images come from the official CurseForge gallery and are loaded straight from there. The addon is “All Rights Reserved”. If an image does not load, the text stays readable.' },
+        { h2: 'Addon vs. regular Minecraft mechanics' },
+        { p: 'Each page indicates when something is an addon mechanic or a regular Minecraft one (for example, the smithing table path to netherite).' }
+      ]
+    }
+
+  ];
+  return { ver: VER, refDate: 'Oct, 2026', src: SRC, img: IMG, categories: categories, stages: stages, entries: entries };
+})();
+(function () {
+  'use strict';
+  var W = window.WIKI;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var esc = function (s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  };
+  var norm = function (s) {
+    return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+  var byId = {}, catById = {};
+  W.entries.forEach(function (e) { byId[e.id] = e; });
+  W.categories.forEach(function (c) { catById[c.id] = c; });
+  var ICONS = {
+    compass: '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
+    trail: '<circle cx="5" cy="19" r="1.6"/><circle cx="19" cy="5" r="1.6"/><path d="M5 19c6 0 2-7 7-7s2-7 7-7" stroke-dasharray="2 3"/>',
+    gem: '<path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3l-2 6 5 12 5-12-2-6"/>',
+    hammer: '<path d="M13 5l6 6-3 3-6-6z"/><path d="M12 10L4 19"/><path d="M11 4l3-1 4 4-1 3"/>',
+    scroll: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/>',
+    flame: '<path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/>',
+    paw: '<circle cx="7" cy="10" r="1.6"/><circle cx="11" cy="6.5" r="1.6"/><circle cx="15" cy="6.5" r="1.6"/><circle cx="19" cy="10" r="1.6"/><path d="M12 11c-3 0-6 3-6 6 0 2 2 3 4 2l2-.5 2 .5c2 1 4 0 4-2 0-3-3-6-6-6z"/>',
+    anvil: '<path d="M3 8h14a3 3 0 0 1-3 4h-2l1 4h3v3H7v-3h3l1-4H8a5 5 0 0 1-5-4z"/>',
+    box: '<path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',
+    search: '<circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/>',
+    home: '<path d="M4 11l8-7 8 7v9H4z"/>',
+    menu: '<path d="M4 7h16M4 12h16M4 17h16"/>'
+  };
+  var icon = function (n, cls) {
+    return '<svg class="ic ' + (cls || '') + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONS[n] || ICONS.info) + '</svg>';
+  };
+  function href(id) { return '#/p/' + id; }
+  function rich(t) {
+    var s = esc(t);
+    s = s.replace(/\[\[([a-z0-9\-\/]+)\|([^\]]+)\]\]/g, function (m, id, label) {
+      var base = id.split('/')[0];
+      if (!byId[base]) { return '<span class="deadlink" title="Page does not exist">' + label + '</span>'; }
+      return '<a href="' + href(id) + '">' + label + '</a>';
+    });
+    s = s.replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+    s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+    return s;
+  }
+  function badge() { return ''; }
+  function flatten(e) {
+    var out = [];
+    e.body.forEach(function (b) {
+      if (b.h2) out.push(b.h2);
+      if (b.p) out.push(b.p);
+      if (b.note) out.push(b.note);
+      if (b.list) b.list.forEach(function (i) { out.push(typeof i === 'string' ? i : i.t); });
+      if (b.kv) b.kv.forEach(function (r) { out.push(r[0] + ' ' + r[1]); });
+      if (b.stages) W.stages.forEach(function (s) {
+        out.push(s.name, s.summary, s.materials.join(' '), s.tools.join(' '), s.learn);
+      });
+    });
+    return out.join(' ');
+  }
+  W.entries.forEach(function (e) {
+    e._t = norm(e.title);
+    e._g = norm((e.tags || []).join(' '));
+    e._s = norm(e.sum);
+    e._b = norm(flatten(e).replace(/\[\[[^|]+\|([^\]]+)\]\]/g, '$1'));
+    e._c = norm(catById[e.cat].name);
+  });
+  function search(q) {
+    var terms = norm(q).split(/\s+/).filter(Boolean);
+    if (!terms.length) return [];
+    var res = [];
+    W.entries.forEach(function (e) {
+      var score = 0, ok = true;
+      terms.forEach(function (t) {
+        var s = 0;
+        if (e._t === t) s += 60;
+        else if (e._t.indexOf(t) === 0) s += 40;
+        else if (e._t.indexOf(t) > -1) s += 28;
+        if (e._g.indexOf(t) > -1) s += 18;
+        if (e._s.indexOf(t) > -1) s += 8;
+        if (e._c.indexOf(t) > -1) s += 4;
+        if (e._b.indexOf(t) > -1) s += 3;
+        if (!s) ok = false;
+        score += s;
+      });
+      if (ok) res.push({ e: e, score: score });
+    });
+    res.sort(function (a, b) { return b.score - a.score || a.e.title.localeCompare(b.e.title); });
+    return res.map(function (r) { return r.e; });
+  }
+  function card(e) {
+    var c = catById[e.cat];
+    return '<a class="card" href="' + href(e.id) + '">' +
+      '<span class="card-ic">' + icon(c.icon) + '</span>' +
+      '<span class="card-tx"><span class="card-t">' + esc(e.title) + '</span>' +
+      '<span class="card-s">' + esc(e.sum) + '</span>' +
+      '<span class="card-m"><span class="chip">' + esc(c.name) + '</span>' + badge(e.st) + '</span></span></a>';
+  }
+  function catCard(c) {
+    var n = W.entries.filter(function (e) { return e.cat === c.id; }).length;
+    return '<a class="card cat" href="#/c/' + c.id + '">' +
+      '<span class="card-ic">' + icon(c.icon) + '</span>' +
+      '<span class="card-tx"><span class="card-t">' + esc(c.name) + '</span>' +
+      '<span class="card-s">' + esc(c.desc) + '</span>' +
+      '<span class="card-m"><span class="chip">' + n + (n === 1 ? ' page' : ' pages') + '</span></span></span></a>';
+  }
+  function crumbs(list) {
+    return '<nav class="crumbs" aria-label="You are here"><ol>' + list.map(function (c, i) {
+      var last = i === list.length - 1;
+      return '<li>' + (c.h && !last ? '<a href="' + c.h + '">' + esc(c.t) + '</a>' : '<span' + (last ? ' aria-current="page"' : '') + '>' + esc(c.t) + '</span>') + '</li>';
+    }).join('') + '</ol></nav>';
+  }
+  function sourcesHtml(e) {
+    return '<ul class="srcs">' + (e.src || []).map(function (k) {
+      var s = W.src[k]; return s ? '<li>' + (s.u ? '<a href="' + esc(s.u) + '" target="_blank" rel="noopener noreferrer">' + esc(s.n) + '</a>' : esc(s.n)) + '</li>' : '';
+    }).join('') + '</ul>';
+  }
+  function stagesHtml(compact) {
+    return '<ol class="stages' + (compact ? ' compact' : '') + '">' + W.stages.map(function (s, i) {
+      var links = s.rel.filter(function (id) { return byId[id]; }).map(function (id) {
+        return '<a href="' + href(id) + '">' + esc(byId[id].title) + '</a>';
+      }).join(', ');
+      if (compact) {
+        return '<li class="stage"><a class="stage-link" href="#/p/progression-guide/' + s.id + '">' +
+          '<span class="stage-n">' + (i + 1) + '</span>' +
+          '<span class="stage-b"><span class="stage-t">' + esc(s.name) + '</span>' +
+          '<span class="stage-s">' + esc(s.summary) + '</span></span></a></li>';
+      }
+      return '<li class="stage" id="' + s.id + '" data-anchor="' + s.id + '">' +
+        '<span class="stage-n">' + (i + 1) + '</span>' +
+        '<div class="stage-b"><h3 class="stage-t">' + esc(s.name) + ' ' + badge(s.st) + '</h3>' +
+        '<p>' + esc(s.summary) + '</p>' +
+        '<dl class="kv">' +
+        '<div><dt>Materials</dt><dd>' + s.materials.map(esc).join('; ') + '</dd></div>' +
+        '<div><dt>Tools and stations</dt><dd>' + s.tools.map(esc).join('; ') + '</dd></div>' +
+        '<div><dt>Learn before advancing</dt><dd>' + esc(s.learn) + '</dd></div>' +
+        '<div><dt>Depends on</dt><dd>' + s.deps.map(esc).join('; ') + '</dd></div>' +
+        '<div><dt>Related guides</dt><dd>' + links + '</dd></div>' +
+        '</dl></div></li>';
+    }).join('') + '</ol>';
+  }
+  function renderBody(e) {
+    var toc = [], n = 0;
+    var html = e.body.map(function (b) {
+      if (b.h2) { var id = 'sec-' + (++n); toc.push({ id: id, t: b.h2 }); return '<h2 id="' + id + '">' + esc(b.h2) + '</h2>'; }
+      if (b.p) return '<p>' + rich(b.p) + '</p>';
+      if (b.note) return '<aside class="note ' + (b.kind || 'info') + '"><strong>' + ({ warn: 'Warning', info: 'Note' }[b.kind || 'info']) + '.</strong> ' + rich(b.note) + '</aside>';
+      if (b.list) return '<ul class="list">' + b.list.map(function (i) {
+        var t = typeof i === 'string' ? i : i.t, st = typeof i === 'string' ? null : i.st;
+        return '<li>' + rich(t) + (st ? ' ' + badge(st) : '') + '</li>';
+      }).join('') + '</ul>';
+      if (b.kv) return '<dl class="kv">' + b.kv.map(function (r) {
+        return '<div><dt>' + esc(r[0]) + '</dt><dd>' + rich(r[1]) + (r[2] ? ' ' + badge(r[2]) : '') + '</dd></div>';
+      }).join('') + '</dl>';
+      if (b.stages) return stagesHtml(false);
+      return '';
+    }).join('');
+    return { html: html, toc: toc };
+  }
+  function viewEntry(id, anchor) {
+    var e = byId[id], c = catById[e.cat];
+    var body = renderBody(e);
+    var gh = './imgs/' + e.cat + '/' + e.id + '.png';
+    var ghTxt = 'imgs/' + e.cat + '/' + e.id + '.png';
+    var img = '<figure class="shot"><a class="shot-a" href="' + gh + '" target="_blank" rel="noopener noreferrer"><img src="' + gh + '" alt="Image of ' + esc(e.title) + '" loading="lazy" referrerpolicy="no-referrer"><span class="ph">Image placeholder<small>' + ghTxt + '</small></span></a><figcaption>' + esc(e.title) + ' — <a href="' + gh + '" target="_blank" rel="noopener noreferrer">' + ghTxt + '</a></figcaption></figure>';
+    var rel = (e.rel || []).filter(function (r) { return byId[r.split('/')[0]]; });
+    var relHtml = rel.length ? '<section class="related"><h2>Related pages</h2><div class="grid">' + rel.map(function (r) { return card(byId[r]); }).join('') + '</div></section>' : '';
+    var tocHtml = body.toc.length > 1 ? '<nav class="toc" aria-label="On this page"><p class="toc-h">On this page</p><ol>' + body.toc.map(function (t) { return '<li><a href="#" data-goto="' + t.id + '">' + esc(t.t) + '</a></li>'; }).join('') + '</ol></nav>' : '';
+    var html =
+      crumbs([{ t: 'Home', h: '#/' }, { t: c.name, h: '#/c/' + c.id }, { t: e.title }]) +
+      '<div class="entry-grid"><article class="entry">' +
+      '<header class="entry-h"><h1>' + esc(e.title) + '</h1><p class="lead">' + esc(e.sum) + '</p></header>' +
+      '<div class="meta"><span><b>Addon version:</b> ' + esc(e.ver) + (e.date ? ' · ' + esc(e.date) : '') + '</span></div>' +
+      img + body.html +
+      '<footer class="entry-f"><h2>Sources</h2>' + sourcesHtml(e) +
+      '<p class="fine">Wiki reference version: ' + esc(W.ver) + ' (' + esc(W.refDate) + ').</p></footer>' +
+      relHtml + '</article>' + (tocHtml ? '<aside class="toc-col">' + tocHtml + '</aside>' : '') + '</div>';
+    return { html: html, title: e.title, anchor: anchor };
+  }
+  function viewCategory(id) {
+    var c = catById[id];
+    var list = W.entries.filter(function (e) { return e.cat === id; });
+    var inner = list.length
+      ? '<div class="grid">' + list.map(card).join('') + '</div>'
+      : '<aside class="note tbc"><strong>No content yet.</strong> This section has no documented pages. Check back later or consult the <a href="#/p/survival-guide">Survival Guide</a>.</aside>';
+    var extra = '';
+    if (id === 'progression') extra = '<h2 class="sec">Progression stages</h2>' + stagesHtml(true);
+    return {
+      title: c.name,
+      html: crumbs([{ t: 'Home', h: '#/' }, { t: c.name }]) +
+        '<header class="entry-h"><h1>' + icon(c.icon, 'h1-ic') + esc(c.name) + '</h1><p class="lead">' + esc(c.desc) + '</p></header>' + inner + extra
+    };
+  }
+  function viewSearch(q) {
+    var res = search(q);
+    var inner = res.length
+      ? '<p class="count">' + res.length + (res.length === 1 ? ' result' : ' results') + ' for <strong>' + esc(q) + '</strong></p><div class="grid">' + res.map(card).join('') + '</div>'
+      : '<aside class="note tbc"><strong>Nothing found for "' + esc(q) + '".</strong> Try another term (item, recipe, mechanic or guide name) or browse the <a href="#/">categories</a>.</aside>';
+    return {
+      title: 'Search: ' + q,
+      html: crumbs([{ t: 'Home', h: '#/' }, { t: 'Search' }]) + '<header class="entry-h"><h1>Search results</h1></header>' + inner
+    };
+  }
+  function viewNotFound() {
+    return {
+      title: 'Page not found',
+      html: crumbs([{ t: 'Home', h: '#/' }, { t: 'Not found' }]) +
+        '<header class="entry-h"><h1>Page not found</h1></header>' +
+        '<aside class="note warn"><strong>That address does not exist.</strong> Go back to the <a href="#/">home page</a> or use the search.</aside>'
+    };
+  }
+  function viewHome() {
+    var latest = W.entries.filter(function (e) { return e.cat === 'updates'; }).slice(0, 3);
+    var cats = W.categories.filter(function (c) { return c.id !== 'about' && c.id !== 'installation'; });
+    var html =
+      '<section class="hero">' +
+      '<div class="hero-tx">' +
+      '<h1>AurorianCraft Wiki</h1>' +
+      '<p class="hero-sub">Your guide to surviving, evolving and mastering a more realistic world.</p>' +
+      '<div class="hero-cta"><a class="btn primary" href="#/p/beginners-guide">Start playing</a>' +
+      '<a class="btn" href="#" data-goto="categories">Explore the wiki</a></div>' +
+      '<p class="hero-ref">Documenting version <strong>' + esc(W.ver) + '</strong> (' + esc(W.refDate) + ') for Minecraft Bedrock 1.26.50. </p>' +
+      '</div>' +
+      '<figure class="hero-img"><img src="' + esc(W.img.hero.src) + '" alt="' + esc(W.img.hero.alt) + '" referrerpolicy="no-referrer"></figure>' +
+      '</section>' +
+      '<section class="block" id="categories"><h2 class="sec">Categories</h2><div class="grid">' + cats.map(catCard).join('') + '</div></section>' +
+      '<section class="block"><h2 class="sec">Progression</h2>' +
+      '<p class="sec-sub">Eight stages that follow the in-game Survival Guide, from plant fiber to steel and netherite.</p>' +
+      stagesHtml(true) + '<p><a class="more" href="#/p/progression-guide">Open the full progression guide</a></p></section>' +
+      '<section class="block"><h2 class="sec">Latest updates</h2><div class="updates">' + latest.map(function (e) {
+        return '<article class="upd"><h3><a href="' + href(e.id) + '">' + esc(e.title) + '</a></h3>' +
+          '<p class="upd-d">' + esc(e.date || '') + '</p>' +
+          '<ul>' + (e.hl || []).map(function (h) { return '<li>' + esc(h) + '</li>'; }).join('') + '</ul>' +
+          '<p class="upd-s"><a href="' + esc(e.src[0] === 'files' ? W.src.files.u : W.src.cf.u) + '" target="_blank" rel="noopener noreferrer">Official source</a></p></article>';
+      }).join('') + '</div><p><a class="more" href="#/c/updates">See all changelogs</a></p></section>' +
+      '<section class="block"><h2 class="sec">Installation</h2><div class="grid">' + card(byId['installation']) + card(byId['known-issues']) + '</div></section>';
+    return { html: html, title: 'AurorianCraft Wiki', home: true };
+  }
+  function renderSide(activeCat, activeId) {
+    var h = '<nav aria-label="Categories"><a class="side-home' + (activeCat === '' && !activeId ? ' on' : '') + '" href="#/">' + icon('home') + 'Home</a><ul>';
+    W.categories.forEach(function (c) {
+      var n = W.entries.filter(function (e) { return e.cat === c.id; }).length;
+      h += '<li><a class="' + (c.id === activeCat ? 'on' : '') + '" href="#/c/' + c.id + '">' + icon(c.icon) + '<span>' + esc(c.name) + '</span><em>' + n + '</em></a></li>';
+    });
+    $('#side').innerHTML = h + '</ul></nav>';
+  }
+  function route() {
+    var parts = (location.hash || '#/').replace(/^#\/?/, '').split('/').map(decodeURIComponent);
+    var v, cat = '', id = null;
+    if (!parts[0]) v = viewHome();
+    else if (parts[0] === 'c' && catById[parts[1]]) { cat = parts[1]; v = viewCategory(parts[1]); }
+    else if (parts[0] === 'p' && byId[parts[1]]) { id = parts[1]; cat = byId[id].cat; v = viewEntry(id, parts[2]); }
+    else if (parts[0] === 'search') { v = viewSearch(parts.slice(1).join('/')); }
+    else v = viewNotFound();
+    $('#main').innerHTML = v.html;
+    document.title = (v.home ? v.title : v.title + ' — AurorianCraft Wiki');
+    renderSide(cat, id);
+    document.body.classList.remove('nav-open');
+    var target = v.anchor && $('[data-anchor="' + v.anchor + '"]');
+    if (target) { target.scrollIntoView(); target.classList.add('flash'); }
+    else window.scrollTo(0, 0);
+    $('#main').focus({ preventScroll: true });
+  }
+  var input = $('#q'), box = $('#suggest'), active = -1, shown = [];
+  function closeSuggest() { box.hidden = true; box.innerHTML = ''; active = -1; input.setAttribute('aria-expanded', 'false'); }
+  function openSuggest() {
+    var q = input.value.trim();
+    if (!q) { closeSuggest(); return; }
+    shown = search(q).slice(0, 7); active = -1;
+    box.innerHTML = shown.length
+      ? shown.map(function (e, i) {
+        return '<a role="option" id="sg-' + i + '" href="' + href(e.id) + '"><span class="sg-t">' + esc(e.title) + '</span><span class="sg-c">' + esc(catById[e.cat].name) + '</span></a>';
+      }).join('') + '<a class="sg-all" href="#/search/' + encodeURIComponent(q) + '">See all results</a>'
+      : '<p class="sg-none">Nothing found for "' + esc(q) + '".</p>';
+    box.hidden = false; input.setAttribute('aria-expanded', 'true');
+  }
+  input.addEventListener('input', openSuggest);
+  input.addEventListener('focus', openSuggest);
+  input.addEventListener('keydown', function (ev) {
+    var items = $$('a', box);
+    if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') {
+      ev.preventDefault(); if (!items.length) return;
+      active = (active + (ev.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length;
+      items.forEach(function (a, i) { a.classList.toggle('sel', i === active); });
+    } else if (ev.key === 'Escape') { closeSuggest(); input.blur(); }
+    else if (ev.key === 'Enter') {
+      ev.preventDefault();
+      if (active >= 0 && items[active]) { location.hash = items[active].getAttribute('href'); }
+      else if (input.value.trim()) { location.hash = '#/search/' + encodeURIComponent(input.value.trim()); }
+      closeSuggest();
+    }
+  });
+  $('#searchform').addEventListener('submit', function (ev) { ev.preventDefault(); });
+  document.addEventListener('click', function (ev) {
+    if (!ev.target.closest('#searchform')) closeSuggest();
+    var g = ev.target.closest('[data-goto]');
+    if (g) {
+      ev.preventDefault();
+      var el = document.getElementById(g.getAttribute('data-goto'));
+      if (el) { el.scrollIntoView(); }
+    }
+    if (ev.target.closest('#suggest a')) { closeSuggest(); input.value = ''; }
+  });
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key === '/' && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) { ev.preventDefault(); input.focus(); }
+  });
+  $('#menubtn').addEventListener('click', function () {
+    var open = document.body.classList.toggle('nav-open');
+    this.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  $('#scrim').addEventListener('click', function () { document.body.classList.remove('nav-open'); });
+  document.addEventListener('error', function (ev) {
+    var t = ev.target;
+    if (t && t.tagName === 'IMG') {
+      var f = t.closest('figure');
+      if (f) f.classList.add('noimg');
+      t.remove();
+    }
+  }, true);
+  $('#ic-search').innerHTML = icon('search');
+  $('#ic-menu').innerHTML = icon('menu');
+  $('#year').textContent = new Date().getFullYear();
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>
+</body>
+</html>
